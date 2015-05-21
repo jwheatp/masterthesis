@@ -127,7 +127,7 @@ More generally, thank to all these wonderful people I've met during my exchange 
 
 Finally, to my family and friends stayed in France for their support, 3000km away.
 
-\restoregeometry
+%\restoregeometry
 
 %\tableofcontents
 
@@ -256,7 +256,7 @@ This project has been conducted between February and May...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Dataset (10p)}
+\chapter{Dataset}
 
 \section{Origin}
 Obtaining datasets about riots is not a simple task. Twitter does not allow to fetch past tweets between two dates with a precise keyword, but only new tweets from the Stream API. Some research groups manage to grant a special access from Twitter, like for the London riots study[REF], but do not make these datasets publicly available online.
@@ -503,14 +503,6 @@ id & content & type \nl
 \end{tabular}
 \label{tabtypes}
 \caption{Example of labelization}
-\end{figure}
-
-\newpage 
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.8\textwidth]{images/diags/chain.png}
-\caption{plop}
 \end{figure}
 
 \subsection{Multinomial Naives Bayes Classifier}
@@ -1201,24 +1193,34 @@ $$ \mathcal{P}(u) = (p_{t_1},p_{t_2},\cdots,p_{t_n}) $$
 $$ \mathcal{I}(u) = (i_{t_1},i_{t_2},\cdots,i_{t_n}) $$
 $$ \mathcal{R}(u) = (\mathcal{P}(u) | \mathcal{I}(u)) $$
 
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{images/diags/chain.png}
+\caption{plop}
+\end{figure}
+
 \newpage
 
 \section{Dimension reduction}
 \subsection{High-dimensional vectors}
-\subsection{PCA}
-\subsection{$t$-SNE}
+The vectorial space created is currently 10 dimensional. This can be considered as high-dimensional and as a consequence causing trouble. 
+
+Firstly, because of the \textbf{curse of dimensionality}. In 10 dimensions, the space is big and sparse. For algorithms such as $k$-nearest neighbor, 
+// to do
+
+\subsection{Principal Component Analysis}
+Principal Component Analysis is a well-known statistical method to reduce dimensions of a dataset. It converts a set of correlated components to a new set of uncorrelated ones called principal components.
 
 
+\subsection{$t$-SNE ?}
+We choose to compare PCA with another dimension reduction algorithm more designed for visualization.
 
 \newpage
 
-\section{Role similarity during a riot}
-\subsection{Choice of metrics}
-\subsection{Clustering}
-
-\newpage
-
-\section{Role similarity two riots}
+\section{Role similarity}
 \subsection{Choice of metrics}
 \subsection{Clustering}
 
@@ -1227,15 +1229,19 @@ $$ \mathcal{R}(u) = (\mathcal{P}(u) | \mathcal{I}(u)) $$
 \section{Experiments}
 experiment 1 \newpage
 experiment 2 \newpage
+experiment 3 \newpage
+experiment 4 \newpage
 
-\chapter{Related work (5p)}
+\chapter{Related work}
 related work 1 \newpage
 related work 2 \newpage
 related work 3 \newpage
 
-\chapter{Discussion (5p) }
+\chapter{Discussion}
 discussion 1 \newpage
 discussion 2 \newpage
 discussion 3 \newpage
+
+\chapter{References}
 
 \end{document}
