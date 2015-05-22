@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{report}
+\documentclass[a4paper,twoside,12pt,openright]{report}
 \usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -15,8 +15,9 @@
 \usepackage{booktabs}   
   \newcolumntype{x}[1]{>{\centering\hspace{0pt}}p{#1}}
   \setlength{\doublerulesep}{\arrayrulewidth}
-\usepackage[left=2cm,top=2cm,bottom=2.4cm,right=2cm]{geometry}
+\usepackage[inner=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[hyphens]{url}
+\usepackage[nottoc, notlof, notlot]{tocbibind}
 \usepackage{enumitem} 
 %\usepackage{pgfplotstable} % Generates table from .csv
 \usepackage{datatool}
@@ -28,6 +29,7 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{tcolorbox}% http://ctan.org/pkg/tcolorbox
+
 \lstset{numbers=left, numberstyle=\scriptsize\ttfamily, numbersep=10pt, captionpos=b} 
 \lstset{
     extendedchars=true,
@@ -53,6 +55,8 @@
 \setlength{\parindent}{0pt}
 
 \parskip 3mm
+
+\renewcommand{\labelitemi}{$\ast$}
 
 \newcommand{\dtitle}[1]{\textbf{#1}}
 \newcommand{\nl}{\tabularnewline\midrule}
@@ -82,6 +86,9 @@
 \title{\texttt{Twitter the Rioter : How to measure, model and predict social disorder on Twitter. \\Study case of the US 2014 Ferguson riots}\\ \textbf{\Large Thesis Draft}}
 \author{Julien Blégean, Aalto University}
 \begin{document}
+
+\raggedbottom
+
 \begin{minipage}[t]{0.4\textwidth}
   \flushleft
   \includegraphics [width=\textwidth]{images/aalto_logo_b.png}
@@ -108,6 +115,8 @@
     Year 2014-2015
 \end{center}
 
+\thispagestyle{empty}
+
 \vfill
 
 {\large \noindent Supervisor : \textbf{Pr. Aristides Gionis}\\
@@ -116,6 +125,10 @@ Advisor : \textbf{Dr. Michael Mathioudakis}}
 \newpage
 
 \newgeometry{left=3cm,right=3cm}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
 
 \chapter*{Acknowledgments}
 
@@ -135,30 +148,29 @@ Finally, to my family and friends stayed in France for their support, 3000km awa
  
 %\listoftables
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% CHAPTER 1 - INTRODUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\restoregeometry
+
 \chapter{Introduction}
 
 \section{Motivation}
+London, 2011. Thousands of people riot in the capital and in many cities across England between 6th and 11th August. Twitter, the 500-million-users social network, is rapidly accused of being the tool prompting looting and violence in the streets. The same year, indeed, The Daily Mail writes : ``There was concern that the disturbances were fanned by Twitter, with some of those taking part posting inflammatory comments from the scene and calling for reinforcements."\footnote{\noindent Read more: \url{http://www.dailymail.co.uk/news/article-2023254/Tottenham-riot-Mark-Duggan-shooting-sparked-police-beating-girl.html}}
 
-London, 2011. Thousands of people riot in the capital and in cities across England between the 6 and 11 August. Twitter, the 500 million users social network, was rapidly accused of being the tool orchestring looting and violence.
+According to the Guardian\footnote{\url{http://www.theguardian.com/uk/2011/aug/11/cameron-call-social-media-clampdown}}, Prime Minister David Cameron, asked companies such as Twitter to take responsability for the content posted on their websites. Moreover, as for the BBC\footnote{\url{http://www.bbc.com/news/technology-14493497}}, the British Government even considered to shut down these social networks temporary in order to avoid their use in the riots. 
 
-The Daily Mail wrote : 
-"There was concern that the disturbances were fanned by Twitter, with some of those taking part posting inflammatory comments from the scene and calling for reinforcements."\footnote{\noindent Read more: \url{http://www.dailymail.co.uk/news/article-2023254/Tottenham-riot-Mark-Duggan-shooting-sparked-police-beating-girl.html}}
+For the first time, London riots highlighted the possible use of social medias to commit violence. At least, the British government enhanced the capacity of the network to organize protests, which was probably not expected when Twitter was created in 2006, only 5 years before London events. 
 
-According to the Guardian\footnote{\url{http://www.theguardian.com/uk/2011/aug/11/cameron-call-social-media-clampdown}}, Prime minister David Cameron asked companies such as Twitter to take responsability for the content posted on their websites. Moreover, according to the BBC\footnote{\url{http://www.bbc.com/news/technology-14493497}}, the British Governement even considered to temporary shut down those social network in order to avoid their use in the riots.
-
-The London riots highlighted the possible use of social medias, nowadays widely used, in order to commit violence, or at least to protest. This usage was maybe not the one expected when Twitter was created in 2006, only 5 years before the London events.
-
-Twitter, Facebook and other social medias were also omnipresent the same year, during the arab spring, even if its contribution is still unclear, as The Guardian\footnote{\url{http://www.theguardian.com/world/2011/feb/25/twitter-facebook-uprisings-arab-libya}} reminds us.
-
-How to understand this new use of social medias ? According to Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/List_of_riots}}, 14 riots occured worldwide. In 2012, there were 45, and in 2011, more than 100. In addition, more people get accustomed to technologies and social medias every day, and are ready to use them one way or another during a crisis event, such as a riot. 
+But is Twitter really a ``rioter" ? How to understand this new use of social medias ? According to Wikipedia\footnote{\url{http://en.wikipedia.org/wiki/List_of_riots}}, 14 riots occured worldwide. In 2012, there were 45, and in 2011, more than 100. Besides, more people get accustomed to technologies and social medias every day, and are ready to use them in one way or another during a crisis event, such as a riot. 
 
 The question of being able to read, analyze and extract information from these networks during a protest becomes central.
+
+\newpage
 
 \section{2014 Ferguson unrest}
 
@@ -167,50 +179,55 @@ The question of being able to read, analyze and extract information from these n
 \centering
 \includegraphics[width=8cm]{images/photos/ferguson_riots.jpg}
 \caption{Photo of the Ferguson riots. On the left, policemen, on the right, protesters raising hands and saying "Don't Shoot"}
+\vspace*{-1cm}
 \end{wrapfigure}
 
-On the August 9, 2014, a 18-year-old black man called Michael Brown is shot dead in Ferguson by a white police officer. This event was the trigger of riots, both peaceful and violent, for more than 2 weeks. 
+On August 9th, 2014, a 18-year-old black man called Michael Brown is shot dead in Ferguson by a white police officer. This event was the trigger of riots, both peaceful and violent, for more than 2 weeks.
 
-As for former unrests, the Ferguson protest has been widely broadcasted on socials medias like Twitter. 
+On November 24th, the Grand Jury decides not to indict the police officier who shot dead Michael Brown, sparking unrest in Ferguson and in others cities accross the US, like in Boston or Los Angeles.
 
-Lorem\\
-Lorem\\
-Lorem\\Lorem\\
-Lorem\\
-Lorem\\
-Lorem\\
+
+
+As for former unrest, the Ferguson protest has been widely broadcasted on social medias like Twitter. 
 
 Some people, like Antonio French, were particularly active. Although not being a journalist, but leaving near Ferguson, he reported daily through Twitter what was happening in the field.
-
 \begin{figure}[H]
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/intro/af_tweets.png}
-	\caption{A. French's tweets counts per day (\copyright \texttt{ usatoday.com})}
-	\label{af_tweets}
+	\caption{Tweets count per day}
 \end{center}
-\end{minipage}
+\end{subfigure}
 \hfill
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/intro/af_followers.png}
-	\caption{A. French's followers count evolution (\copyright \texttt{ usatoday.com})}
-	\label{af_followers}
+	\caption{Followers cumulative count per day}
 \end{center}
-\end{minipage}
+\end{subfigure}
+\caption{Antonio French's activity during the protest (\copyright \texttt{ usatoday.com})}
+\label{afactivity}
 \end{figure}
+One can see on the figure \ref{afactivity} how Antonio French was active (up to 300 tweets a day) during the whole unrest. And, even more interesting, the figure shows how he became popular, as he was followed by more than 120,000 people at the end of the protest, whereas he was almost unknown on Twitter before. 
 
-In an article\footnote{http://www.usatoday.com/story/news/nation-now/2014/08/25/antonio-french-twitter-ferguson/14457633/} from USA Today, one can see on the figure \ref{af_tweets} how Antonio French was active (up to 300 tweets a day) during the whole unrest. And, even more interesting, the figure \ref{af_followers} shows how he became popular, as he was followed by more than 120,000 people, whereas he was almost unknown on Twitter before the protest. 
+As the article shows through example tweets, Antonio French had an informative role. He mostly posted pictures and videos during each riot, and everytime, he tried to gather information about what was happening.\\
+In this way, it is interesting to wonder:
+\begin{itemize}
+\vspace*{-0.2cm}
+\setlength\itemsep{0em}
+\item How to model such a role on Twitter during a riot ?
+\item How to say if two users are similar ?
+\item How to group users given the role they play ?
+\item How to visualize this kind of information ?
+\end{itemize}
 
-As the articles shows through examples tweets, Antonio French was in an informative role. He mostly posted pictures and videos during each riots, and tried everytime to gather information about what was happening. 
-
-In this way, it is interesting to wonder how to model such a \emph{role} on Twitter during a riot and how to group users giving the \emph{role} they play.
-
+The following part describes the problem and the objectives more formally.
 \newpage
 
-\section{Problem definition and objectives}
+\section{Formulation and objectives}
 
-In this part we define the problem and we introduce clearly the objectives.
+In this part we introduce clearly the objectives this project will try to fulfil. \\
+Firstly, we define and formulate three entities : a \textbf{protest}, a \textbf{riot} and a \textbf{topic}.
 
 \begin{defbox}
 \textbf{Definition} - Protest $\mathcal{P}_n$\\
@@ -223,30 +240,30 @@ In our case, we suppose there is a riot each night. As a consequence, $\mathcal{
 \textbf{Definition} - Riot $r$ and topics $t$\\
 A riot $r$ is defined as a set of $m$ topics $t$ occuring during the riot $r$.
 $$ r = [t_1, t_2, \cdots, t_n]$$
-A topic is itself a set of tweets, such as a tweet can belongs to several topics.
 \end{defbox}
-
-
+The main objective of this project is given by :
 
 \begin{objbox}\color{Maroon}
-\textbf{Objective 1 - Polarity} : define and compute the polarity of a user.
+\textbf{Main Objective} : Define and compute the \textbf{role} of a user, the similarity between two users and clusters these users by their role.
+\end{objbox}
+
+We decide to characterize the role of a user by a simple model with two features :
+\begin{itemize}
+\item \textbf{Polarity}. What kind of content does the user publish ? How to characterize it ? What are the different types of content existing ? How to quantify it ?
+\item \textbf{Influence}. Does the user has influence ? How to quantify it? How to visualize it ? How does this influence evolve ?
+\end{itemize}
+This leads to two intermediary objectives : 
+\begin{objbox}\color{Maroon}
+\textbf{Objective 1.} Define and compute the \textbf{polarity} of a user.
 \end{objbox}
 
 \begin{objbox}\color{Maroon}
-\textbf{Objective 2 - Influence} : define and compute the influence of a user.
+\textbf{Objective 2.} Define and compute the \textbf{influence} of a user.
 \end{objbox}
-
-\begin{objbox}\color{Maroon}
-\textbf{Objective - Role} : define and compute the role of a user, and then the distance and similarity between two users.
-\end{objbox}
-
-\newpage
-\section{Outline}
 
 \newpage
 
 \section{Organisation and methods}
-
 This project has been conducted between February and May...
 
 
@@ -259,28 +276,43 @@ This project has been conducted between February and May...
 \chapter{Dataset}
 
 \section{Origin}
-Obtaining datasets about riots is not a simple task. Twitter does not allow to fetch past tweets between two dates with a precise keyword, but only new tweets from the Stream API. Some research groups manage to grant a special access from Twitter, like for the London riots study[REF], but do not make these datasets publicly available online.
+The choice of the Ferguson riots as a case study has been made for several reasons. Firstly, this is a recent case, as it occured last year. Moreover, this events happened in a country that use social medias a lot. In addition, the fact all the tweets are in English makes the study of the language easier than studying, for example, the Arab Spring protests. But one of the main reason was that this dataset was available.
+
+Indeed, obtaining datasets about riots is not a simple task. Twitter does not allow to fetch past tweets between two dates with a precise keyword, but only new tweets from the Stream API. Some research groups manage to grant a special access from Twitter, like for the London riots study\cite{procter2013reading}, but do not make these datasets publicly available online.
 
 Moreover, Twitter does not allow neither peers to share full datasets obtained with its API. However, the company allows people for now to share IDs list of tweets, without any content. One is then able to use the Twitter API to fetch, for each ID, the tweet content (text, author, date etc.) under the rates limitations.
 
-The dataset used in this project is obtained from Ed Summers, a developer who started to record the Ferguson-related tweets after Mike Brown's shooting and who published on his blog the IDs list\footnote{\url{http://inkdroid.org/journal/2014/08/30/a-ferguson-twitter-archive/}}.
+The dataset used in this project is obtained from Ed Summers, a developer who started to record the Ferguson-related tweets after Mike Brown's shooting and who published on his blog the IDs list\footnote{\url{http://inkdroid.org/journal/2014/08/30/a-ferguson-twitter-archive/}}. The task was then to \emph{hydrate} the tweets and users to obtain the full dataset.
 
-The task was then to \emph{hydrate} the tweets and users to obtain the full dataset.
+Contrary to a more advanced (and therefore costly) tool called Firehorse, the free Stream API allow developers to fetch only $1\%$ of the live stream. In other ways, considering all the tweets published at the present moment, one is able with the Stream API to get only $1\%$ of the total tweets. But does this $1\%$ sample is \emph{representative} of all published content ? Studies \cite{DBLP:journals/corr/MorstatterPLC13} and \cite{morstatter2014biased} demonstrates that even if biases can be introduced, the sample data remains close and representative to the all stream.
+
+In order to collect the data, the Twitter Stream API has been used with the keyword Ferguson between the August 10th and 27th. As a consequence, every tweet containing this word (not only hashtag) and present in the sample stream during that period is present in our dataset.
+
+In the end, our dataset contains approximately 12 million tweets.
 
 \newpage
 
-\section{Content}
-
 \section{Structure}
-The dataset contains approximately 12 million tweets and contains data from the 10 August to the 27 August.
+The dataset contains approximately 12 million tweets and contains data from August 10th to August 27th.
+
+In this part we describe a tweet and a user and their structures.
 
 \subsection{Tweet structure}
-plop
+A \textbf{tweet} represents a message a user posted and its metadatas, like the publication date, its identification number, a media (photo / link) etc. Some metadatas are specific to Twitter : 
+\begin{itemize}
+\item hashtag : represent a keyword in the message, written with the \# symbol. It allows Twitter to classify tweets given their content.
+\item mention : represent a reference to another user in the message, written with the @ symbol. It is commonly used so people can talk each other.
+\end{itemize}
+There are special tweets called \emph{retweets}. They start by \texttt{RT @user} and allow a user to share a tweet of another user. A tweet with an important retweet count is considered as popular
+
+The detailed structure of a tweet is given on figure \ref{structTweet}.
+
 \begin{figure}[h!]
 \centering
-\begin{tabular}{c|c|c}
+\begin{tabular}{ccc}
 field & type & example\\
-\midrule
+\hline
+\hline
 id & number & \texttt{498619822134280192} \\ \hline
 publication date & date & \texttt{2014-08-11 00:00:04} \\ \hline
 author id & number & \texttt{124010717} \\ \hline
@@ -288,35 +320,36 @@ text & number & \pbox{9cm}{\vspace*{5pt}\texttt{Please follow @AntonioFrench now
 retweet count & number & \texttt{4} \\ \hline
 is it a retweet ? & boolean & \texttt{False} \\ \hline
 hashtags & string list & \texttt{\#Ferguson, \#MikeBrown} \\ \hline
-links and medias & string list & \texttt{http://t.co/---} \\ \hline
+links and medias & string list & \texttt{http://t.co/---} \\ \hline \hline
 \end{tabular}
-\caption{Tweet schema}
+\caption{Structure of a tweet}
+\label{structTweet}
 \end{figure}
 
 \newpage
 
 \subsection{User structure}
-plop
+A \textbf{user} represents a person or an organization. They can be properly named with the real full name of the author or just use a nickname. In addition, a user has an identification nickname, usually short, that is used for mentions in a message, as described above. A user can follow and be followed by people. Contrary to social medias as Facebook, he the links are unidirectional. If user $A$ follows user $B$, user $B$ may not follow user $A$. A user with an important followers count is considered as popular.
+
+The detailed structure of a user is given on figure \ref{structUser}.
+
 \begin{figure}[h!]
 \centering
-\begin{tabular}{c|c|c}
+\begin{tabular}{ccc}
 field & type & example\\
-\midrule
+\hline
+\hline
 user id & number & \texttt{14090948} \\ \hline
 name & string & \texttt{Antonio French} \\ \hline
 nickname & string & \texttt{AntonioFrench} \\ \hline
 registration date & date & \texttt{2008-03-06 19:51:29} \\ \hline
 tweet count & number & \texttt{19372} \\ \hline
 followers count & number & \texttt{119977} \\ \hline
-friends count & number & \texttt{1373} \\ \hline
+friends count & number & \texttt{1373} \\ \hline \hline
 \end{tabular}
-\caption{User schema}
+\caption{Structure of an user}
+\label{structUser}
 \end{figure}
-Lorem\\
-Lorem\\
-Lorem\\
-Lorem\\
-Lorem\\
 
 
 \newpage
@@ -324,53 +357,65 @@ Lorem\\
 \section{Basic analysis}
 
 \subsection{Frequencies}
+We compute the hour-frequency of tweets, that is to say the number of tweets published every hour for each day. The result is shown on figure \ref{freqTweets}. We distinguish several kinds of tweets : 
+\begin{itemize}
+\item \textbf{tagged} : tweets containing a least one hashtag, \underline{except} the two most popular that are \texttt{\#Ferguson} and \texttt{\#MikeBrown}.
+\item \textbf{min-tagged} : tweets containing a least one hashtag, \underline{including} the two most popular that are \texttt{\#Ferguson} and \texttt{\#MikeBrown}.
+\item \textbf{no-tagged} : tweets with no hashtag at all
+\item \textbf{retweets} : only retweets, no simple tweets.
+\item \textbf{total} : all the tweets
+\end{itemize}
+
+Firstly, one can see the frequencies distribution. We clearly have peaks of frequency during the nights, from midnight to the morning. This corresponds to the riots happening during the nights.
+
+Moreover, one can notice the hashtags proportions. Approximately less than a half of the tweets (and sometimes only a third) contains non trivial hashtags (namely not \texttt{\#Ferguson} or \texttt{\#MikeBrown}). This raises the question of the relevance of studying hashtags in this situation.
+
+In addition, the proportion of retweets is very high each day. This means that most of the people just retweet relevant content instead of writing themselves.
 
 \begin{figure}[H]
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/freq_11_08.png}
-	\caption{11/08 : tweets frequencies}
+	\caption{August 11th}
 \end{center}
-\end{minipage}
+\end{subfigure}
 \hfill
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/freq_12_08.png}
-	\caption{12/08 : tweets frequencies}
+	\caption{August 12th}
 \end{center}
-\end{minipage}
-\end{figure}
+\end{subfigure}
 
-\begin{figure}[H]
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/freq_12_08.png}
-	\caption{13/08 : tweets frequencies}
+	\caption{August 13th}
 \end{center}
-\end{minipage}
+\end{subfigure}
 \hfill
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/freq_14_08.png}
-	\caption{14/08 : tweets frequencies}
+	\caption{August 14th}
 \end{center}
-\end{minipage}
-\end{figure}
+\end{subfigure}
 
-\begin{figure}[H]
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/freq_15_08.png}
-	\caption{15/08 : tweets frequencies}
+	\caption{August 15th}
 \end{center}
-\end{minipage}
+\end{subfigure}
 \hfill
-\begin{minipage}[t]{0.48\textwidth}
+\begin{subfigure}[t]{0.48\textwidth}
 \begin{center}
 	\includegraphics[width=\textwidth]{images/freqs/freq_16_08.png}
-	\caption{16/08 : tweets frequencies}
+	\caption{August 16th}
 \end{center}
-\end{minipage}
+\end{subfigure}
+\caption{Tweets frequencies}
+\label{freqTweets}
 \end{figure}
 
 \newpage
@@ -392,6 +437,7 @@ Lorem\\
 \section{Motivation}
 In order to characterize the role of a user in a riot, the most straightfoward approach is to study what he says. A tweet allows a user to publish a 140 characters message. 
 
+\newpage
 \section{Preprocessing}
 Before analyzing the data, it's essential to preprocess it. 
 
@@ -435,6 +481,7 @@ police, treat, white, opencarry, supporter, vs, unarm\st{ed}, black, teen, wonde
 
 \end{enumerate}
 
+\newpage
 \section{Supervised classification : characterizing tweets by type}
 Supervised learning is helpful because one can choose the categories. 
 
@@ -455,14 +502,14 @@ By taking a look at some tweets obtained on the 11th of August, we can underline
 type & details & example\\
 \hline
 \hline
-\info{informative} & The tweet contains informative text content about the happening riot. The URL link is ignored. & "\#Ferguson quiktrip burning http://t.co/1Jm5ngZe62" \\
+\info{informative} & The tweet contains informative text content about the happening riot. The URL link is ignored. & ``\#Ferguson quiktrip burning http://t.co/1Jm5ngZe62" \\
 \hline
-\ninfo{non informative} & The tweet expresses feeling, an idea, a conviction, but no information about the happening riot. & "Prayers for \#STL \#Ferguson." \\
+\ninfo{non informative} & The tweet expresses feeling, an idea, a conviction, but no information about the happening riot. & ``Prayers for \#STL \#Ferguson." \\
 \hline
 \hline
-\rass{involved} & The tweet support, encourages directly the happening riot, the rioters or their ideas. & "Just spread the word we need \#Justice" \#ferguson \#stlouis \#MO  \#uniteblue \#libcrib \#p2 http://t.co/78QURveWvK" \\
+\rass{involved} & The tweet support, encourages directly the happening riot, the rioters or their ideas. & ``Just spread the word we need \#Justice" \#ferguson \#stlouis \#MO  \#uniteblue \#libcrib \#p2 http://t.co/78QURveWvK" \\
 \hline
-\nrass{not involved} & The tweet is objective about the situation or blame the riot, the riotes or their ideas. & "I am beyond saddened to see the looting in \#Ferguson. This removes the focus from justice for \#MikeBrown. Violence is never an answer." \\
+\nrass{not involved} & The tweet is objective about the situation or blame the riot, the riotes or their ideas. & ``I am beyond saddened to see the looting in \#Ferguson. This removes the focus from justice for \#MikeBrown. Violence is never an answer." \\
 \end{tabular}
 \end{figure}
 
@@ -474,7 +521,7 @@ One can notice the types pairs appearing, mostly :
 \item \ninfo{non informative}/\rass{involved} : useful tweets as their authors support the riot. It's interesting to consider the content in order to :
 \begin{itemize}
 \item understand the rioters claims ;
-\item observe if the "virtual violence" (language for example) of these users evolves ;
+\item observe if the ``virtual violence" (language for example) of these users evolves ;
 \item identify the main influencers.
 \end{itemize}
 \end{itemize}
@@ -485,12 +532,12 @@ The two others types are less interesting. Indeed, \ninfo{non informative}/\nras
 \centering
 \begin{tabular}{c|Cp{3cm}}
 id & content & type \nl
-1 & "A riot is the language of the unheard." $~$Martin Luther King, Jr. \#Ferguson http://t.co/OXfzgEcN1B & \ninfo{non informative} \newline \nrass{not involved} \nl
+1 & ``A riot is the language of the unheard." $~$Martin Luther King, Jr. \#Ferguson http://t.co/OXfzgEcN1B & \ninfo{non informative} \newline \nrass{not involved} \nl
 2 & The Watts Riots began on \info{August 11, 1965}.  \info{49} years ago today. \#Ferguson http://t.co/gYgaI5WlP9 & \info{informative} \newline \nrass{not involved} \nl
 3 & QuickTrip is \info{burning} to the ground. \#Ferguson http://t.co/9ykNn4a8ek & \info{informative} \newline \nrass{not involved} \nl
 4 & \ninfo{Prayers} for \#STL \#Ferguson. & \ninfo{non informative} \newline \nrass{not involved} \nl
 5 & The QuickTrip is \info{now} \info{burning}. \#Ferguson (photo: @PDPJ) http://t.co/tJBeXQ6hzF & \info{informative} \newline \nrass{not involved} \nl
-6 & "if you Retweet or Screenshot. Just \rass{spread the word} \rass{we need \#Justice}" \#ferguson \#stlouis \#MO  \#uniteblue \#libcrib \#p2 http://t.co/78QURveWvK & \ninfo{non informative} \newline \rass{involved}  \nl
+6 & ``if you Retweet or Screenshot. Just \rass{spread the word} \rass{we need \#Justice}" \#ferguson \#stlouis \#MO  \#uniteblue \#libcrib \#p2 http://t.co/78QURveWvK & \ninfo{non informative} \newline \rass{involved}  \nl
 7 & \info{Tear gas} is being used in \#Ferguson.  Mayor tells \info{CNN} he has been receiving death threats. \info{Armored vehicles roam the streets}. & \info{informative} \newline \nrass{not involved} \nl
 8 & \rass{PAY ATTENTION} as "teen" becomes "man," "community" becomes "mob," and \rass{"murder" becomes "alleged shooting}." \#Ferguson \rass{\#medialiteracy} & \ninfo{non informative} \newline \rass{involved} \nl
 9 & \info{Happening now} in \#Ferguson http://t.co/KFuaOEZ4tf & \info{informative} \newline \nrass{not involved} \nl
@@ -501,8 +548,8 @@ id & content & type \nl
 14 & \info{Shots} \info{fired} at Walmart. \#Ferguson & \info{informative} \newline \nrass{not involved} \nl
 15 & I am beyond saddened to \info{see the looting} in \#Ferguson. This removes the focus from justice for \#MikeBrown. \nrass{Violence is never an answer}. & \info{informative ?} \newline \nrass{not involved} \nl
 \end{tabular}
-\label{tabtypes}
 \caption{Example of labelization}
+\label{tabtypes}
 \end{figure}
 
 \subsection{Multinomial Naives Bayes Classifier}
@@ -576,10 +623,13 @@ informativness & involvement & ~ \\ \hline
 \end{tabular}
 \end{center}
 
+One can see on figure \ref{screenshotLabeling} the manual labeling process. The script show a tweet message, and ask two \emph{boolean} questions : Is the tweet informative ? Is the tweet involved ?
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/screens/manual_label_screen.png}
-\caption{plop}
+\caption{Screenshot of the manual labeling process}
+\label{screenshotLabeling}
 \end{figure}
 
 \newpage
@@ -677,14 +727,16 @@ The test results are shown in figure \ref{nb1testresults}, with $k$ = 5. NB refe
 As seen in the previous part, it is difficult to classifiy the biased tweets only by the language.
 
 \subsection{Motivation}
+One can notice on figure \ref{mediaFreq11} that the tweets containing a media represent half of the total tweets, on average. As a result, it is important to take it into consideration and analyze it.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{images/freqs/medias/freq_meds_11.png}
-\caption{Proportions in dataset}
+\caption{Medias proportion on August 11th}
+\label{mediaFreq11}
 \end{figure}
 
-If we take a look at the tweets on the 11th of August labeled as biased, we can extract the medias on the figure \ref{tweets500mediasBiaised}. From the left to right column, one can see the domain name of the medias and a description.
+If we take a look at the tweets on the 11th of August labeled as biased, we can extract the medias on the figure \ref{tweets500mediasBiaised}. On the left, there is the domain names of the medias and on the right their descriptions.
 
 The medias types are various : videos, images, blog articles, chatting window etc.
 \begin{figure}[H]
@@ -693,8 +745,8 @@ The medias types are various : videos, images, blog articles, chatting window et
 \hline
 media domain name & description \\ \hline
 \texttt{youtube.com} & Anonymous Operation video \\ \hline
-\texttt{cnn.com} & video of Brown's mother "you took my son away from me" \\
-\texttt{vine.co} & a man encouraging the protesters. "No fear. Keep going." \\ \hline
+\texttt{cnn.com} & video of Brown's mother ``you took my son away from me" \\ \hline
+\texttt{vine.co} & a man encouraging the protesters. ``No fear. Keep going." \\ \hline
 \texttt{twimg.com} & picture about racism \\ \hline
 \texttt{talk.ee} & chat window \\ \hline
 \texttt{theobamacrat.com} & blog article defending Mike Brown \\ \hline
@@ -703,8 +755,8 @@ media domain name & description \\ \hline
 \texttt{youtube.com} & video clip encouraging riots \\ \hline
 \hline
 \end{tabular}
+\caption{Medias in the training set labeled as supportive}
 \label{tweets500mediasBiaised}
-\caption{medias in the training sets labelled as involved}
 \end{figure}
 
 \newpage
@@ -715,6 +767,8 @@ Let's define $ \mathcal{M}_r = \{ m \} $ the set of medias $m$ shared during the
 \textbf{Hypothesis :} if the class of a media $m$ is $C \in \{0,1,2\}$ then the associated tweet messages belongs also to this class.
 
 \subsection{Annoting the top 100 medias}
+\label{annotingTopMediasSection}
+
 We first consider the 100 medias the most retweeted on the 11th of the August, and we label it manually :
 \begin{itemize}
 \item \textbf{garbage} (class 0)
@@ -786,17 +840,26 @@ Given one of our Naive Bayes model, it is easy to get the most informative featu
 One can see how the features of class 1 gather descriptive words, such as \emph{looting}, \emph{burning}, \emph{shots} etc. The class 2 talks about the \emph{hackers} and use different kind of words.
 
 \newpage
-\subsection{Media embedding}
-Once we have the top 100 medias list, 
+\subsection{Media embedding and visualization}
+
+In this section we try to visualize the users given the medias they published.\\
+In order to achieve this, we represent a user by a media vector, in the same way we did in section \ref{tweetEmbeddingSection} but now with medias.
 
 \[
 \bordermatrix{~ & media_1 & media_2 & \cdots & media_n \cr user_1 =  & tfidf_{1,1} & tfidf_{1,2} & \cdots & tfidf_{1,n} \cr}
 \]
 
+Given the $n$ most shared medias during a riot, each component $i$ of the vector is the $tfidf$ frequency of the media $i$ for the user.
+
+Moreover, if the users posted a media that appears in the top 100 medias we labeled (section \ref{tweetEmbeddingSection}) as classified as \emph{supportive}, we mark the user as ``supportive".
+
+Eventually, we take the 1000 most active users, apply $t$-SNE transformation and plot it, as shown on figure \label{tsneMedias}. The black dots represent the ``supportive" users, and the grey dots the others. One can notice on the figure \label{tsneMedias} that two clusters appear.
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/plots/media_tsne.png}
-\caption{tsne}
+\caption{$t$-SNE transformation applied on the media vectors}
+\label{tsneMedias}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -814,6 +877,7 @@ On one hand, considering only the informative tweets, the topic detection can te
 \newpage
 
 \section{Tweet embedding}
+\label{tweetEmbeddingSection}
 
 The goal is to characterize a tweet by the words it contains, by using for example the bag-of-words representation.
 
@@ -900,10 +964,48 @@ $$ \sum_{i=1}^n \min_j ||d_i-t_j||_2^2 $$
 
 For a better initialization, some improved algorithms like $k$-means++ exist.
 
+\subsection{Limits}
+Even if it can be the most straightforward approach, this method has drawbacks, essentialy because of the high-dimensionality of the vectors. Such dimensional problems will also be discussed in section \ref{dimReducSection}.
+
+
+\newpage 
 
 \subsection{Experiment}
+\begin{figure}[H]
+  \centering
+\begin{tabular}{l}
+\hline
+huge police crowd louis site st county live west killed \\ \hline
+right police family nike liquor dollar goods sight store looted \\ \hline
+right happening family people fire walmart shots department news looted \\ \hline
+omg looting burning fire photo wow quiktrip quicktrip damn ground \\ \hline
+florissant police stationed west burglarized walmart businesses officer w chambers \\ \hline
+quicktrip burning people mo prayers n tonight go black need \\ \hline
+feed ktvi stream rioting watch live updates coverage news scanner \\ \hline
+right police looting riot people photo gas riots news dont \\ \hline
+police fired area firing near walmart officer shots chambers scanner \\ \hline
+via whats happening dellwood rioting wow damn killed shit looting \\ \hline
+\end{tabular}
+\caption{Topics obtained by $k$-means on the 11/08}
+\end{figure}
 
-\subsection{Limits}
+\begin{figure}[H]
+  \centering
+\begin{tabular}{l}
+\hline
+right police riot get tear people via got told thats \\ \hline
+protect police brutality watching people officers killing street moving allowed \\ \hline
+steve aerial neck wooden walsh police tonight video shot pellet \\ \hline
+leave good shot people resident media scene tonight right hope \\ \hline
+woman police screams pregnant month slam im force nnht ground \\ \hline
+force right police like scene looks another world sounds look \\ \hline
+right police tear gas masks rubber bullets mist shooting stand \\ \hline
+police area tv media trapped turned leave lot ordered told \\ \hline
+right police dont people media scene cops go home happening \\ \hline
+via police qt media outside stay protest right today happened \\ \hline
+\end{tabular}
+\caption{Topics obtained by $k$-means on the 12/08}
+\end{figure}
 
 \newpage
 \section{Latent Dirichlet Allocation}
@@ -1062,32 +1164,23 @@ The number of hashtags in a tweet is low (en general below 5 and often 0). Thus,
 \end{algorithmic}
 \end{algorithm}
 
+//commentaire communautés
+// only the top 100 weighted edges are shown. 
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/graphs/hashtags/11_08.png}
 \caption{Hashtag graph}
 \end{figure}
 
-//commentaire communautés
-// only the top 100 weighted edges are shown. 
+\textbf{Community detection}
 
-\subsection{Usage}
 \begin{figure}[H]
-  \centering
-\begin{tabular}{|c|c|c|c|}
-\hline
-argument & description & format & default value \\ \hline
-\texttt{time} & time window & hh:mm hh:mm & null \\ \hline
-\texttt{rmtags} & remove hashtags & tag1 tag2 ..  & ferguson, mikebrown \\ \hline
-\texttt{comms} & search communities & True/False & False \\ \hline
-\texttt{nEdges} & number of top edges to keep & number & 500 \\ \hline
-\texttt{nComms} & number of top communities to keep & number & 10\\ \hline
-\texttt{allnodes} & print all nodes & True/False & False \\ \hline
-\texttt{users} & compute users graphs & True/False & False \\ \hline
-\hline
-\end{tabular}
-\caption{top influent users for the 11/08 02:00-09:00}
+\centering
+\includegraphics[width=\textwidth]{images/graphs/hashtags/hc_13_08.png}
+\caption{Hashtag graph}
 \end{figure}
+
 
 \newpage
 \section{Contribution graph}
@@ -1096,7 +1189,7 @@ We can wonder how users actually contribute to these hashtags communities. Do us
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{images/graphs/users/13_08.png}
+\includegraphics[width=\textwidth]{images/graphs/hashtags/contrib_13_08.png}
 \caption{Hashtag graph}
 \end{figure}
 
@@ -1136,8 +1229,8 @@ We can wonder how users actually contribute to these hashtags communities. Do us
 	\caption{August 17th}
 \end{center}
 \end{subfigure}
-\label{activitiesPlots}
 \caption{Most retweeted users of the 17/08 activity}
+\label{activitiesPlots}
 \end{figure}
 
 
@@ -1205,6 +1298,8 @@ $$ \mathcal{R}(u) = (\mathcal{P}(u) | \mathcal{I}(u)) $$
 \newpage
 
 \section{Dimension reduction}
+\label{dimReducSection}
+
 \subsection{High-dimensional vectors}
 The vectorial space created is currently 10 dimensional. This can be considered as high-dimensional and as a consequence causing trouble. 
 
@@ -1242,6 +1337,7 @@ discussion 1 \newpage
 discussion 2 \newpage
 discussion 3 \newpage
 
-\chapter{References}
+\bibliographystyle{apalike}
+\bibliography{biblio}
 
 \end{document}
