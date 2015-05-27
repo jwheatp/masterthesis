@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{wrapfig}
+\usepackage{tabularx}
 \usepackage{soul}
 \usepackage{multirow}
 \usepackage{pbox}
@@ -15,7 +16,7 @@
 \usepackage{booktabs}   
   \newcolumntype{x}[1]{>{\centering\hspace{0pt}}p{#1}}
   \setlength{\doublerulesep}{\arrayrulewidth}
-\usepackage[inner=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[inner=2.5cm, outer=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage[hyphens]{url}
 \usepackage[nottoc, notlof, notlot]{tocbibind}
 \usepackage{enumitem} 
@@ -50,9 +51,9 @@
   }
 }}
 
-\setlength\parindent{24pt}
+\setlength\parindent{12pt}
 
-\setlength{\parindent}{0pt}
+%\setlength{\parindent}{0pt}
 
 \parskip 3mm
 
@@ -88,46 +89,77 @@
 \begin{document}
 
 \raggedbottom
+\thispagestyle{empty}
+\noindent Aalto University\\[5pt]
+School of Science\\[5pt]
+Degree Programme in Computer Science and Engineering
 
-\begin{minipage}[t]{0.4\textwidth}
-  \flushleft
-  \includegraphics [width=\textwidth]{images/aalto_logo_b.png}
+\vspace{4cm}
+
+\noindent Julien Blégean\\[20pt]
+\begin{minipage}[l]{0.8\textwidth}
+    {\Large {\textsf{Twitter the Rioter :\\[20pt] Analyzing roles through a protest on social media.\\[20pt] \emph{\large What was your part during the 2014 Ferguson riots?}}}}\\
 \end{minipage}
-
-\vspace{3.5cm}
-
-\begin{center}
-\begin{minipage}[t]{0.85\textwidth}
-\begin{center}
-    {\LARGE {\textsf{Twitter the Rioter :\\[-5pt] Analyzing roles through a protest on Twitter.\\[5pt] \emph{\large What was your part during the 2014 Ferguson riots?}}}}\\
-\end{center}
-\end{minipage}
-\end{center}
 
 \vspace{1cm}
 
-\begin{center}
-    \textbf{\large Julien BLEGEAN}
-\end{center}
-
-\begin{center}
-    \large Aalto University\\
-    Year 2014-2015
-\end{center}
-
-\thispagestyle{empty}
-
 \vfill
+\noindent Final Project\\[5pt]
+Espoo, May 25, 2015\\[15pt]
 
-{\large \noindent Supervisor : \textbf{Pr. Aristides Gionis}\\
-Advisor : \textbf{Dr. Michael Mathioudakis}}
+\noindent
+\begin{tabular}{@{}ll}
+Supervisor & Professor Aristides Gionis, Aalto University \\[5pt]
+Advisor & Michael Mathioudakis, PhD\\
+\end{tabular}
 
-\newpage
-
-\newgeometry{left=3cm,right=3cm}
 \newpage
 \thispagestyle{empty}
 \mbox{}
+\newpage
+
+\begin{minipage}[t]{\textwidth}
+  \flushright
+  \includegraphics [width=0.4\textwidth]{images/aalto_logo_b.png}
+\end{minipage}
+
+\vspace{-1.5cm}
+\def\arraystretch{1.3}
+\noindent
+\begin{tabularx}{\textwidth}{Xr}
+Aalto University & \\
+School of Science & \sc{Abstract Of}\\
+Degree Programme in Computer Science and Engineering & \sc{Final Project}\\ 
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|}
+\hline
+\textbf{Author} : Julien Blégean \\
+\textbf{Title} : \\[-18pt]
+\multicolumn{1}{|c|}{Twitter the Rioter : Analyzing roles through a protest on social media.} \\
+\multicolumn{1}{|c|}{What was your part during the 2014 Ferguson riots?} \\ \hline
+\textbf{Date} : May 25, 2015 \\ \hline
+\textbf{Number of pages} :  \hfill \textbf{Language} : English \\ \hline
+\textbf{Supervisor} : Professor Aristides Gionis  \\
+\textbf{Advisor} : Michael Mathioudakis, PhD \\ \hline
+\textbf{Abstract} : \\
+We introduce a framework for analyzing roles of users during a riot. The dataset contains messages from Twitter during the 2014 US Ferguson protests.\\[2pt]
+
+We first extract topics from a riot by comparing two techniques : $k$-means and Latent Dirichlet Allocation.\\[2pt]
+
+Secondly, we focus on the content of the tweets. After some language preprocessing, we train and test a Naive Bayes classifier to predict if a tweet is either supportive or informative about the riot. We also study the medias shared by users in order to improve our classifier and in the end we define and compute user polarity score.\\[2pt]
+
+Then, we perform graph analysis on the hashtags and users and we visualize these networks through examples. We also define and compute user influence score with degree centrality and Page Rank.\\[2pt]
+
+Finally, we define the role of a user during a riot (or several) as being the feature vector of its polarity and influence scores for each topic. We perform dimension reduction with PCA and $t$-SNE for visualization purpose and neighbors research. Through experiments, we show how users with the same job (for example journalists or activists) are grouped together.
+ \\ \hline
+\textbf{Keywords} : Twitter, Natural Language Processing, Graph Analysis, Visualization, Naive Bayes, Clustering, Topic Modeling, Influence, Social Network, Riot, Protest, Ferguson  \\ \hline
+\end{tabularx}
+
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+\newgeometry{inner=3.5cm,outer=3cm}
 
 
 \chapter*{Acknowledgments}
@@ -136,16 +168,16 @@ First and foremost, I would like to specially thank my supervisor, Prof. Aristid
 
 I also would like to thank the data mining group for welcoming me during these 5 months.
 
-More generally, thank to all these wonderful people I've met during my exchange year in Finland, for their support and friendship.
+More generally, I would like to thank to all the wonderful people I have met during my exchange year in Finland, for their support and friendship.
 
-Finally, to my family and friends stayed in France for their support, 3000km away.
+Finally, to my family and friends stayed in France for their support, 3000 kilometers from here.
 
 %\restoregeometry
 
-%\tableofcontents
+\tableofcontents
 
-%\listoffigures
- 
+\listoffigures
+
 %\listoftables
 
 
@@ -160,6 +192,7 @@ Finally, to my family and friends stayed in France for their support, 3000km awa
 \chapter{Introduction}
 
 \section{Motivation}
+
 London, 2011. Thousands of people riot in the capital and in many cities across England between 6th and 11th August. Twitter, the 500-million-users social network, is rapidly accused of being the tool prompting looting and violence in the streets. The same year, indeed, The Daily Mail writes : ``There was concern that the disturbances were fanned by Twitter, with some of those taking part posting inflammatory comments from the scene and calling for reinforcements."\footnote{\noindent Read more: \url{http://www.dailymail.co.uk/news/article-2023254/Tottenham-riot-Mark-Duggan-shooting-sparked-police-beating-girl.html}}
 
 According to the Guardian\footnote{\url{http://www.theguardian.com/uk/2011/aug/11/cameron-call-social-media-clampdown}}, Prime Minister David Cameron, asked companies such as Twitter to take responsability for the content posted on their websites. Moreover, as for the BBC\footnote{\url{http://www.bbc.com/news/technology-14493497}}, the British Government even considered to shut down these social networks temporary in order to avoid their use in the riots. 
@@ -263,10 +296,22 @@ This leads to two intermediary objectives :
 
 \newpage
 
-\section{Organisation and methods}
-This project has been conducted between February and May...
+\section{Technical details}
+All the code has been written in Python and uses the following libraries : 
+\begin{itemize}
+\item \textbf{NLTK}, for the Natural Language Processing part ;
+\item \textbf{Scikit-Learn}, for the machine learning algorithms ;
+\item \textbf{Gensim}, for the topic modeling part ;
+\item \textbf{Networkx}, for creating and manipulating graphs ;
+\end{itemize}
 
+The code is hosted on Github at the following url :
+\begin{center}
+\vspace{0cm}
+\url{http://github.com/jwheatp/twitter-riots}
+\end{center}
 
+The computation tasks have been made on the Linux Ubuntu \texttt{brute.aalto.fi} server, model HP BL460c.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%% CHAPTER 2 - DATASET
@@ -286,16 +331,12 @@ The dataset used in this project is obtained from Ed Summers, a developer who st
 
 Contrary to a more advanced (and therefore costly) tool called Firehorse, the free Stream API allow developers to fetch only $1\%$ of the live stream. In other ways, considering all the tweets published at the present moment, one is able with the Stream API to get only $1\%$ of the total tweets. But does this $1\%$ sample is \emph{representative} of all published content ? Studies \cite{DBLP:journals/corr/MorstatterPLC13} and \cite{morstatter2014biased} demonstrates that even if biases can be introduced, the sample data remains close and representative to the all stream.
 
-In order to collect the data, the Twitter Stream API has been used with the keyword Ferguson between the August 10th and 27th. As a consequence, every tweet containing this word (not only hashtag) and present in the sample stream during that period is present in our dataset.
-
-In the end, our dataset contains approximately 12 million tweets.
+In order to collect the data, the Twitter Stream API has been used with the keyword Ferguson between the August 10th and 27th. As a consequence, every tweet containing this word (not only hashtag) and present in the sample stream during that period is present in our dataset. In the end, our dataset contains approximately 12 million tweets.
 
 \newpage
 
 \section{Structure}
-The dataset contains approximately 12 million tweets and contains data from August 10th to August 27th.
-
-In this part we describe a tweet and a user and their structures.
+The dataset contains approximately 12 million tweets and contains data from August 10th to August 27th. In this part we describe a tweet and a user and their structures.
 
 \subsection{Tweet structure}
 A \textbf{tweet} represents a message a user posted and its metadatas, like the publication date, its identification number, a media (photo / link) etc. Some metadatas are specific to Twitter : 
@@ -320,6 +361,7 @@ text & number & \pbox{9cm}{\vspace*{5pt}\texttt{Please follow @AntonioFrench now
 retweet count & number & \texttt{4} \\ \hline
 is it a retweet ? & boolean & \texttt{False} \\ \hline
 hashtags & string list & \texttt{\#Ferguson, \#MikeBrown} \\ \hline
+mentions & string list & \texttt{@AntonioFrench} \\ \hline
 links and medias & string list & \texttt{http://t.co/---} \\ \hline \hline
 \end{tabular}
 \caption{Structure of a tweet}
@@ -357,6 +399,7 @@ friends count & number & \texttt{1373} \\ \hline \hline
 \section{Basic analysis}
 
 \subsection{Frequencies}
+\label{subSecFreqs}
 We compute the hour-frequency of tweets, that is to say the number of tweets published every hour for each day. The result is shown on figure \ref{freqTweets}. We distinguish several kinds of tweets : 
 \begin{itemize}
 \item \textbf{tagged} : tweets containing a least one hashtag, \underline{except} the two most popular that are \texttt{\#Ferguson} and \texttt{\#MikeBrown}.
@@ -420,6 +463,56 @@ In addition, the proportion of retweets is very high each day. This means that m
 
 \newpage
 
+\subsection{Most retweeted users}
+In this section we take a look at the most retweeted users. These are the ones for which the tweets appear among the top 100 retweets for a considered day.
+
+The figure \ref{activitiesPlots} show the most retweeted users for four days. For each plot, one can see the most retweeted users of the corresponding day and their activity evolution on the other days. For example, on figure \ref{activitiesPlots11}, the user \texttt{michaelskolnik} has 25 tweets appearing in the top 100. But we see that on the August 12 decreases to 3 tweets, and then he completely disappear. Some users like \texttt{antoniofrench} or \texttt{youranonnews} remains in the ranking almost for the six days.
+
+On figure \ref{activitiesPlots16} that corresponds to the August 16, we notice that the user \texttt{ryanjreilly} appear in the rank on the August 15 and begin more popular day by day. Moreover, some users like \texttt{koranaddo} or \texttt{michaelcalhoun} appear to be popular for only one day.
+
+This highlights different kind of popular users : 
+\begin{itemize}
+\item the users very popular at the begining but who disappear after several day, and on the contrary the users who are not popular for some days but appear in the ranking a given moment ;
+\item the users who are only popular for a short moment, like a day ;
+\item the users that stay popular and retweeted a lot all through the protest.
+\end{itemize}
+
+\begin{figure}[H]
+\begin{subfigure}[t]{0.5\textwidth}
+\begin{center}
+	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_11_08.png}
+	\caption{August 11th}
+	\label{activitiesPlots11}
+\end{center}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.5\textwidth}
+\begin{center}
+	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_14_08.png}
+	\caption{August 14th}
+	\label{activitiesPlots14}
+\end{center}
+\end{subfigure}
+
+\begin{subfigure}[t]{0.5\textwidth}
+\begin{center}
+	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_16_08.png}
+	\caption{August 16th}
+	\label{activitiesPlots16}
+\end{center}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.5\textwidth}
+\begin{center}
+	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_17_08.png}
+	\caption{August 17th}
+	\label{activitiesPlots17}
+\end{center}
+\end{subfigure}
+\caption{Most retweeted users on diffent days}
+\label{activitiesPlots}
+\end{figure}
+
 %\subsubsection*{0am-2am (2,058 tweets)}
 %\toprt{top_rt_11_08_00_02}
 %\subsubsection*{2am-4am (22,297 tweets)}
@@ -429,17 +522,30 @@ In addition, the proportion of retweets is very high each day. This means that m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% CHAPTER 3 - CONTENT POLARITY
+%%%%%% CHAPTER 4 - DETECTING TOPICS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Language analysis and content polarity}
+\chapter{Topic modeling}
+
 \section{Motivation}
-In order to characterize the role of a user in a riot, the most straightfoward approach is to study what he says. A tweet allows a user to publish a 140 characters message. 
+
+Before modeling users by the roles they play, we must define the support of reference, that is to say, the events or topics that will characterize their role.
+
+The simple approach is to consider a riot as a whole, but this has limits. Indeed, in this case we don't consider a subject but a time window, which is not very significant. For example, let's take two distinct events $A$ and $B$ happening the same day, and two users called $Alice$ and $Bob$. Let's suppose $Alice$ only tweets about the event $A$, and $Bob$ only about the event $B$, and let's imagine they write positive things about their respective events. It would be wrong, only by considering the two events occur the same day, to conclude that $Alice$ and $Bob$ have the opinion. We must be sure they talk about the same things before comparing them.
+
+In this chapter, we want to group the tweets by what they are talking about that is to say their underlying topic. Of course, it is not possible to automatically capture the meaning of the tweets and find topics that way, but we can try to clusters the tweets based on the word they contains.
+
+After some preprocessing, we try two methods in order to achieve this.
+
 
 \newpage
+
 \section{Preprocessing}
+
 Before analyzing the data, it's essential to preprocess it. 
+
+\subsection{Content preprocessing}
 
 \fbox{
   \parbox{\textwidth}{\texttt{
@@ -482,10 +588,293 @@ police, treat, white, opencarry, supporter, vs, unarm\st{ed}, black, teen, wonde
 \end{enumerate}
 
 \newpage
-\section{Supervised classification : characterizing tweets by type}
-Supervised learning is helpful because one can choose the categories. 
 
-Concerning a riot, a useful approach is to classify tweets by their types. We establish a simple type classification below.
+\subsection{Tweet embedding}
+\label{tweetEmbeddingSection}
+
+The goal is to characterize a tweet by the words it contains, by using for example the bag-of-words representation.
+
+However, this method has its limits. Indeed, it does not consider how a word is common or not inside the whole corpus of tweets. For example, the word "Ferguson" is not very useful to characterize a tweet as it is a very common word in the corpus.
+
+Instead, it is preferable to compute the TF-IDF, for term frequency – inverse document frequency, particularly used in text mining.
+
+It is defined as follow : 
+
+$$tfidf = tf \times idf$$ 
+where 
+$tf$ is the frequency of the word in the considered document (tweet) and
+$$idf = log \frac{|D|}{|\{d_j | t_j \in d_j\}|}$$
+where $D = \{d_j | j\in R\} $ is the set of documents (tweets) and $|.|$ is defined as the size of the set.
+
+In this way, for each word of a tweet, we take into consideration if this word is common in the dataset or not, and ajust its frequency accordingly. This method allows to bring out the uncommon words that may characterize a tweet.
+
+We are now able to represent a tweet in the space of the vocabulary words $\mathcal{V}$ :
+
+\[
+\bordermatrix{~ & word_1 & word_2 & \cdots & word_n \cr tweet =  & tfidf_1 & tfidf_2 & \cdots & tfidf_n \cr}
+\]
+
+And all the tweets vectors generate the term matrix $\mathcal{M}$ :
+
+\[
+\bordermatrix{
+~ & word_1 & word_2 & \cdots & word_n \cr 
+tweet_1 & tfidf_{1,1} & tfidf_{1,2} & \cdots & tfidf_{1,n} \cr
+tweet_2 & tfidf_{2,1} & tfidf_{2,2} & \cdots & tfidf_{2,n} \cr
+\hspace{10pt} \vdots & \vdots & \vdots & \ddots & \vdots \cr
+tweet_m & tfidf_{m,1} & tfidf_{m,2} & \cdots & tfidf_{m,n} \cr
+}
+\]
+
+\newpage
+
+%\section{Distance between two tweets}
+
+%\subsection{Euclidean distance}
+%In order to evaluate if two tweets are close or not, distance functions.\\
+%we need a distance function $\mathcal{D}$ such that
+%$$ \mathcal{D} : X\times X \rightarrow \textbf{\textsf{R}}^+ $$
+%and such that $\mathcal{D}$, for all $t_1$,$t_2$ $\in X$
+%\begin{itemize}
+%\item $\mathcal{D}(t_1,t_2)$ is \textbf{small} if $t_1$ and $t_2$ are \textbf{similar}
+%\item $\mathcal{D}(t_1,t_2)$ is \textbf{large} if $t_1$ and $t_2$ are \textbf{dissimilar}
+%\end{itemize}
+%the most commonly used distance define as follow :
+%$$ \forall t_1,t_2 \in X, \mathcal{D}(t_1,t_2) = || t_1 - t_2 ||_2 $$
+%\subsection{Cosine similarity}
+%we need a similarity function $\cos$ such that
+%$$ \cos : X\times X \rightarrow \textbf{\textsf{R}}^+ $$
+%and such that $\cos$, for all $t_1$,$t_2$ $\in X$
+%\begin{itemize}
+%\item $\cos(t_1,t_2)$ is \textbf{small} if $t_1$ and $t_2$ are \textbf{dissimilar}
+%\item $\cos(t_1,t_2)$ is \textbf{large} if $t_1$ and $t_2$ are \textbf{similar}
+%\end{itemize}
+%$$ \forall t_1,t_2 \in X, \cos(t_1,t_2) = \frac{t_1.t_2}{||t_1||.||t_2||} $$
+
+\newpage
+\section{Clustering using $k$-means}
+
+\subsection{$k$-means algorithm}
+Given a set of documents $\mathcal{C} = \{d_1,d_2,\cdots,d_m\}$, we want to find $k$ centers, or topics, $t_1,t_2,\cdots,t_k$ that minimizes the cost :
+$$ \sum_{i=1}^n \min_j ||d_i-t_j||_2^2 $$
+
+
+\begin{algorithm}
+\caption{$k$-means algorithm}
+\label{algo:kmeans}
+\begin{algorithmic} 
+\STATE pick randomly $k$ center ${t_1,t_2,\cdots,t_k}$
+\REPEAT
+\STATE assign each point $d$ to its closest center t, in order to create $k$ clusters
+\STATE compute the new centers by taking the mean of each cluster
+\UNTIL{convergence}
+\end{algorithmic}
+\end{algorithm}
+
+For a better initialization, some improved algorithms like $k$-means++ exist.
+
+\subsection{Topic modeling}
+
+After perfoming the $k$-means algorithm, we get two outputs : 
+\begin{itemize}
+\item the \textbf{tweets clusters}, that is to say each tweet belongs to one cluster that correspond to a topic.
+\item the \textbf{topics}, that are the clusters centers. These are computed ``mean" tweets from the tweets belonging to each cluster.
+\end{itemize}
+
+\newpage 
+
+\subsection{Experiment}
+We experiment $k$-means on two riot days : the August 11 (figure \ref{topicKmeans11}) and the August 12 (figure \ref{topicKmeans12}).
+
+\begin{figure}[H]
+\begin{subfigure}[t]{\textwidth}
+  \centering
+\begin{tabularx}{0.9\textwidth}{l}
+\hline
+huge police crowd louis site st county live west killed \\ \hline
+right police family nike liquor dollar goods sight store looted \\ \hline
+right happening family people fire walmart shots department news looted \\ \hline
+omg looting burning fire photo wow quiktrip quicktrip damn ground \\ \hline
+florissant police stationed west burglarized walmart businesses officer w chambers \\ \hline
+quicktrip burning people mo prayers n tonight go black need \\ \hline
+feed ktvi stream rioting watch live updates coverage news scanner \\ \hline
+right police looting riot people photo gas riots news dont \\ \hline
+police fired area firing near walmart officer shots chambers scanner \\ \hline
+via whats happening dellwood rioting wow damn killed shit looting \\ \hline
+\end{tabularx}
+\caption{August 11}
+\label{topicKmeans11}
+\end{subfigure}
+\begin{subfigure}[t]{\textwidth}
+\vspace*{30pt}
+  \centering
+\begin{tabularx}{0.9\textwidth}{l}
+\hline
+right police riot get tear people via got told thats \\ \hline
+protect police brutality watching people officers killing street moving allowed \\ \hline
+steve aerial neck wooden walsh police tonight video shot pellet \\ \hline
+leave good shot people resident media scene tonight right hope \\ \hline
+woman police screams pregnant month slam im force nnht ground \\ \hline
+force right police like scene looks another world sounds look \\ \hline
+right police tear gas masks rubber bullets mist shooting stand \\ \hline
+police area tv media trapped turned leave lot ordered told \\ \hline
+right police dont people media scene cops go home happening \\ \hline
+via police qt media outside stay protest right today happened \\ \hline
+\end{tabularx}
+\caption{August 12}
+\label{topicKmeans12}
+\end{subfigure}
+\caption{Topics obtained with $k$-means}
+\end{figure}
+
+\newpage
+\section{Latent Dirichlet Allocation}
+\label{LDASec}
+
+\subsection{LDA algorithm}
+
+\begin{center}
+\begin{tabular}{ll}
+Topics & $ \mathcal{T} = \{t_1,t_2,\cdots,t_k\} $ \\
+Documents & $ \mathcal{C} = \{d_1,d_2,\cdots,d_m\} $ \\
+Vocabulary & $ \mathcal{V} = \{w_1,w_2,\cdots,w_n\} $ \\
+\end{tabular}
+\end{center}
+
+Let's consider that : 
+\begin{enumerate}
+\item each document is a probabilistic mixture of several underlying topics ;
+\item each topic is a probabilistic distribution of words ;
+\end{enumerate}
+
+The topics are latent, hidden, as we do not observe them directly. They have to be infered from the words they are described with.
+
+\subsubsection{Dirichlet distribution}
+For three topics, the Dirichlet distribution for a document can be visualize in a triangle, as on figure \ref{diri_distri1}. Each corner represent a topic. The closer a document is to a corner, the higher is the probability that the document belongs to the topic. For example, on the figure \ref{diri_distri1}, the document belongs to the topic 2 with an higher probability than with the topics 1 and 3.
+
+\begin{figure}[H]
+\begin{minipage}[t]{0.48\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{images/diags/lda_1.png}
+\caption{Hashtag graph}
+\label{diri_distri1}
+\end{center}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\begin{center}
+\includegraphics[width=\textwidth]{images/diags/lda_2.png}
+\caption{Hashtag graph}
+\label{diri_distri2}
+\end{center}
+\end{minipage}
+\end{figure}
+
+As figure \ref{diri_distri2} shows, we also have a Dirichlet distribution for the a topic and words (here 3 words). In this simple example, the topic is mostly characterized by the word 3, and a bit more by the word 1 than the word 2.
+
+distribution of the topics $\beta$\\
+topic proportions $\theta$\\
+
+LDA follows the generate process : 
+\begin{algorithm}
+\caption{LDA : Generative process}
+\label{algo:hashtagsGraph}
+\begin{algorithmic} 
+\FOR{each document $d$}
+\STATE draw a distribution over topics $\theta_d \sim \textsf{Dirichlet}(\alpha)$
+\FOR{each word $i$ in the document}
+\STATE draw a topic $t$ in $\{t_1,\cdots,t_k\}$ according to $\theta_d$
+\STATE draw the observed word $w$ according to $\beta_t$
+\ENDFOR
+\ENDFOR
+\\[10pt]
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Learning process}
+The learning process consists of getting topics distributions and proportions according to the considered documents in the corpus.\\
+
+// online learning algorithm 
+
+
+\newpage
+
+\subsection{Experiment}
+We experiment LDA on two riot days : the August 11 (figure \ref{topicLDA11}) and the August 12 (figure \ref{topicLDA12}).
+
+\begin{figure}[H]
+\begin{subfigure}[t]{\textwidth}
+  \centering
+\begin{tabularx}{0.9\textwidth}{l}
+\hline
+racial profiling come shoot youth usa dont lessons survival black \\ \hline
+right prayers language king unheard luther riot jr martin qt \\ \hline
+praying officer police taco bell people swat news team pray \\ \hline
+riots quiktrip today august watts ago began years burning tonight \\ \hline
+quicktrip ground happening burning police looting gas tear wow scanner \\ \hline
+photo burning quicktrip dogs community becomes police blame attention people \\ \hline
+purge looting death mo people see guard via right police \\ \hline
+police whats going nothing dellwood crazy difference changed pictures color \\ \hline
+brown chaos looted police mike killed want looting shop oh \\ \hline
+fired shots walmart live video fire police florissant looting quicktrip \\ \hline
+\end{tabularx}
+\caption{August 11}
+\label{topicLDA11}
+\end{subfigure}
+\begin{subfigure}[t]{\textwidth}
+\vspace*{30pt}
+  \centering
+\begin{tabularx}{0.9\textwidth}{l}
+\hline
+police gas tear officers stand riot masks protected mist live \\ \hline
+n via historic tonight video protest like police st louis \\ \hline
+nothing today get police home phones resident go happened thrown \\ \hline
+police war missouri us shot riots city zone mo aerial \\ \hline
+happening whats got going shit eyes need peace law news \\ \hline
+media scene area pregnant leave told robin police williams thats \\ \hline
+police people want dont black cops white watching street words \\ \hline
+police violence shooting please journalists someone cars shut know anyone \\ \hline
+right wow reporters gas tear photographers including bullets crowd rubber \\ \hline
+jesus brown mike wow twitter pd obama time alex statement \\ \hline
+\end{tabularx}
+\caption{August 12}
+\label{topicLDA12}
+\end{subfigure}
+\caption{Topics obtained with Latent Dirichlet Allocation}
+\end{figure}
+
+
+\newpage
+
+
+\section{Comparison of the two methods}
+
+Firstly, $k$-means is a \emph{hard-clustering} method, that is to say one tweet belongs to only one cluster (ie one topic) and the clusters are disjoint. 
+
+On the contrary, LDA is a \emph{soft-clustering} method. The algorithm represent a tweet as a mixture of topics. As a consequence, with that model, a tweet can belongs to several topics with some probabilities.
+
+Secondly, we can call into question the $k$-means approach essentialy because of the high-dimensionality of the vectors and their sparsity. Indeed, it is hard to evaluate if two vectors are close in a such voluminous space (for example with a vocabulary of 1000 words) especially as many components are equal to zero (as a tweet contains at most 140 characters).  Such dimensional problems will also be discussed in section \ref{dimReducSection}.
+
+As a result, we choose to use the Latent Dirichlet Allocation method in the next of this project, as it seems to be the most realistic model.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% CHAPTER 3 - CONTENT POLARITY
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Language analysis and content polarity}
+\section{Motivation}
+The main idea in this chapter is to characterize a user by what he writes in his tweets and in a general way we try to study the nature of the content shared by all the users during a riot.
+
+Contrary to the previous chapter, we here tend to apply \emph{supervised learning} methods, that is to say we want to classify the tweets given an already existing classification of content types.
+
+In the first part, we will establish a content type classification and we will build a model to predict it. In the second part, we will use the medias enclosed to the tweets in order to improve this model.
+
+\newpage
+\section{Characterizing tweets by their types}
+In this section, we classify tweets by their nature. First, We establish a simple type classification below.
 
 \subsection{Intuition}
 
@@ -528,7 +917,9 @@ One can notice the types pairs appearing, mostly :
 
 The two others types are less interesting. Indeed, \ninfo{non informative}/\nrass{not involved} tweets does not contain any valuable information and \info{informative}/\rass{involved} tweets should be avoided as they may not contain objective information.
 
-\begin{figure}[h!]
+\newpage
+\noindent
+\begin{figure}[H]
 \centering
 \begin{tabular}{c|Cp{3cm}}
 id & content & type \nl
@@ -548,9 +939,11 @@ id & content & type \nl
 14 & \info{Shots} \info{fired} at Walmart. \#Ferguson & \info{informative} \newline \nrass{not involved} \nl
 15 & I am beyond saddened to \info{see the looting} in \#Ferguson. This removes the focus from justice for \#MikeBrown. \nrass{Violence is never an answer}. & \info{informative ?} \newline \nrass{not involved} \nl
 \end{tabular}
-\caption{Example of labelization}
+\caption{Examples of maunal labeling}
 \label{tabtypes}
 \end{figure}
+
+\newpage
 
 \subsection{Multinomial Naives Bayes Classifier}
 
@@ -654,10 +1047,10 @@ One can see on figure \ref{screenshotLabeling} the manual labeling process. The 
 \caption{Tweets type repartition for the involvement feature}
 \label{pieTypeInv}
 \end{figure}
-\vspace*{-1cm}
+\vspace*{-0.6cm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{images/plots/pies/pie_pairs3.png}
+\includegraphics[width=0.46\textwidth]{images/plots/pies/pie_pairs3.png}
 \caption{Proportions in dataset}
 \end{figure}
 
@@ -798,6 +1191,8 @@ The type repartition can be seen on the figure \ref{typeRepartitionMedias}
 \newpage
 
 \subsection{Improving the classification model}
+\label{NBMediaSec}
+
 Annoting only 100 medias enables to actually label several thousand tweets.
 \begin{figure}[H]
   \centering
@@ -862,264 +1257,6 @@ Eventually, we take the 1000 most active users, apply $t$-SNE transformation and
 \label{tsneMedias}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%% CHAPTER 4 - DETECTING TOPICS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\chapter{Tweets clustering : detecting topics}
-
-\section{Motivation}
-The other question one may wonder is what the tweets are talking about, what are the main topics discussed during the riot. \\
-
-On one hand, considering only the informative tweets, the topic detection can tell what is happening, which is the facts and breaking news concerning a riot.
-\newpage
-
-\section{Tweet embedding}
-\label{tweetEmbeddingSection}
-
-The goal is to characterize a tweet by the words it contains, by using for example the bag-of-words representation.
-
-However, this method has its limits. Indeed, it does not consider how a word is common or not inside the whole corpus of tweets. For example, the word "Ferguson" is not very useful to characterize a tweet as it is a very common word in the corpus.
-
-Instead, it is preferable to compute the TF-IDF, for term frequency – inverse document frequency, particularly used in text mining.
-
-It is defined as follow : 
-
-$$tfidf = tf \times idf$$ 
-where 
-$tf$ is the frequency of the word in the considered document (tweet) and
-$$idf = log \frac{|D|}{|\{d_j | t_j \in d_j\}|}$$
-where $D = \{d_j | j\in R\} $ is the set of documents (tweets) and $|.|$ is defined as the size of the set.
-
-In this way, for each word of a tweet, we take into consideration if this word is common in the dataset or not, and ajust its frequency accordingly. This method allows to bring out the uncommon words that may characterize a tweet.
-
-We are now able to represent a tweet in the space of the vocabulary words $\mathcal{V}$ :
-
-\[
-\bordermatrix{~ & word_1 & word_2 & \cdots & word_n \cr tweet =  & tfidf_1 & tfidf_2 & \cdots & tfidf_n \cr}
-\]
-
-And all the tweets vectors generate the term matrix $\mathcal{M}$ :
-
-\[
-\bordermatrix{
-~ & word_1 & word_2 & \cdots & word_n \cr 
-tweet_1 & tfidf_{1,1} & tfidf_{1,2} & \cdots & tfidf_{1,n} \cr
-tweet_2 & tfidf_{2,1} & tfidf_{2,2} & \cdots & tfidf_{2,n} \cr
-\vdots & \vdots & \vdots & \ddots & \vdots \cr
-tweet_m & tfidf_{m,1} & tfidf_{m,2} & \cdots & tfidf_{m,n} \cr
-}
-\]
-
-\newpage
-
-\section{Distance between two tweets}
-
-\subsection{Euclidean distance}
-In order to evaluate if two tweets are close or not, distance functions.\\
-we need a distance function $\mathcal{D}$ such that
-$$ \mathcal{D} : X\times X \rightarrow \textbf{\textsf{R}}^+ $$
-and such that $\mathcal{D}$, for all $t_1$,$t_2$ $\in X$
-\begin{itemize}
-\item $\mathcal{D}(t_1,t_2)$ is \textbf{small} if $t_1$ and $t_2$ are \textbf{similar}
-\item $\mathcal{D}(t_1,t_2)$ is \textbf{large} if $t_1$ and $t_2$ are \textbf{dissimilar}
-\end{itemize}
-the most commonly used distance define as follow :
-$$ \forall t_1,t_2 \in X, \mathcal{D}(t_1,t_2) = || t_1 - t_2 ||_2 $$
-
-
-\subsection{Cosine similarity}
-
-we need a similarity function $\cos$ such that
-$$ \cos : X\times X \rightarrow \textbf{\textsf{R}}^+ $$
-and such that $\cos$, for all $t_1$,$t_2$ $\in X$
-\begin{itemize}
-\item $\cos(t_1,t_2)$ is \textbf{small} if $t_1$ and $t_2$ are \textbf{dissimilar}
-\item $\cos(t_1,t_2)$ is \textbf{large} if $t_1$ and $t_2$ are \textbf{similar}
-\end{itemize}
-
-$$ \forall t_1,t_2 \in X, \cos(t_1,t_2) = \frac{t_1.t_2}{||t_1||.||t_2||} $$
-
-\newpage
-\section{Clustering using $k$-means}
-
-\subsection{$k$-means algorithm}
-Given a set of documents $\mathcal{C} = \{d_1,d_2,\cdots,d_m\}$, we want to find $k$ centers, or topics, $t_1,t_2,\cdots,t_k$ that minimizes the cost :
-$$ \sum_{i=1}^n \min_j ||d_i-t_j||_2^2 $$
-
-
-\begin{algorithm}
-\caption{$k$-means algorithm}
-\label{algo:kmeans}
-\begin{algorithmic} 
-\STATE pick randomly $k$ center ${t_1,t_2,\cdots,t_k}$
-\REPEAT
-\STATE assign each point $d$ to its closest center t, in order to create $k$ clusters
-\STATE compute the new centers by taking the mean of each cluster
-\UNTIL{convergence}
-\end{algorithmic}
-\end{algorithm}
-
-For a better initialization, some improved algorithms like $k$-means++ exist.
-
-\subsection{Limits}
-Even if it can be the most straightforward approach, this method has drawbacks, essentialy because of the high-dimensionality of the vectors. Such dimensional problems will also be discussed in section \ref{dimReducSection}.
-
-
-\newpage 
-
-\subsection{Experiment}
-\begin{figure}[H]
-  \centering
-\begin{tabular}{l}
-\hline
-huge police crowd louis site st county live west killed \\ \hline
-right police family nike liquor dollar goods sight store looted \\ \hline
-right happening family people fire walmart shots department news looted \\ \hline
-omg looting burning fire photo wow quiktrip quicktrip damn ground \\ \hline
-florissant police stationed west burglarized walmart businesses officer w chambers \\ \hline
-quicktrip burning people mo prayers n tonight go black need \\ \hline
-feed ktvi stream rioting watch live updates coverage news scanner \\ \hline
-right police looting riot people photo gas riots news dont \\ \hline
-police fired area firing near walmart officer shots chambers scanner \\ \hline
-via whats happening dellwood rioting wow damn killed shit looting \\ \hline
-\end{tabular}
-\caption{Topics obtained by $k$-means on the 11/08}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-\begin{tabular}{l}
-\hline
-right police riot get tear people via got told thats \\ \hline
-protect police brutality watching people officers killing street moving allowed \\ \hline
-steve aerial neck wooden walsh police tonight video shot pellet \\ \hline
-leave good shot people resident media scene tonight right hope \\ \hline
-woman police screams pregnant month slam im force nnht ground \\ \hline
-force right police like scene looks another world sounds look \\ \hline
-right police tear gas masks rubber bullets mist shooting stand \\ \hline
-police area tv media trapped turned leave lot ordered told \\ \hline
-right police dont people media scene cops go home happening \\ \hline
-via police qt media outside stay protest right today happened \\ \hline
-\end{tabular}
-\caption{Topics obtained by $k$-means on the 12/08}
-\end{figure}
-
-\newpage
-\section{Latent Dirichlet Allocation}
-
-\subsection{LDA algorithm}
-
-\begin{center}
-\begin{tabular}{ll}
-Topics & $ \mathcal{T} = \{t_1,t_2,\cdots,t_k\} $ \\
-Documents & $ \mathcal{C} = \{d_1,d_2,\cdots,d_m\} $ \\
-Vocabulary & $ \mathcal{V} = \{w_1,w_2,\cdots,w_n\} $ \\
-\end{tabular}
-\end{center}
-
-Let's consider that : 
-\begin{enumerate}
-\item each document is a probabilistic mixture of several underlying topics ;
-\item each topic is a probabilistic distribution of words ;
-\end{enumerate}
-
-The topics are latent, hidden, as we do not observe them directly. They have to be infered from the words they are described with.
-
-\subsubsection{Dirichlet distribution}
-For three topics, the Dirichlet distribution for a document can be visualize in a triangle, as on figure \ref{diri_distri1}. Each corner represent a topic. The closer a document is to a corner, the higher is the probability that the document belongs to the topic. For example, on the figure \ref{diri_distri1}, the document belongs to the topic 2 with an higher probability than with the topics 1 and 3.
-
-\begin{figure}[H]
-\begin{minipage}[t]{0.48\textwidth}
-\begin{center}
-\includegraphics[width=\textwidth]{images/diags/lda_1.png}
-\caption{Hashtag graph}
-\label{diri_distri1}
-\end{center}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\begin{center}
-\includegraphics[width=\textwidth]{images/diags/lda_2.png}
-\caption{Hashtag graph}
-\label{diri_distri2}
-\end{center}
-\end{minipage}
-\end{figure}
-
-As figure \ref{diri_distri2} shows, we also have a Dirichlet distribution for the a topic and words (here 3 words). In this simple example, the topic is mostly characterized by the word 3, and a bit more by the word 1 than the word 2.
-
-distribution of the topics $\beta$\\
-topic proportions $\theta$\\
-
-LDA follows the generate process : 
-\begin{algorithm}
-\caption{LDA : Generative process}
-\label{algo:hashtagsGraph}
-\begin{algorithmic} 
-\FOR{each document $d$}
-\STATE draw a distribution over topics $\theta_d \sim \textsf{Dirichlet}(\alpha)$
-\FOR{each word $i$ in the document}
-\STATE draw a topic $t$ in $\{t_1,\cdots,t_k\}$ according to $\theta_d$
-\STATE draw the observed word $w$ according to $\beta_t$
-\ENDFOR
-\ENDFOR
-\\[10pt]
-\end{algorithmic}
-\end{algorithm}
-
-\subsubsection{Learning process}
-The learning process consists of getting topics distributions and proportions according to the considered documents in the corpus.\\
-
-// online learning algorithm 
-
-
-\newpage
-
-\subsection{Experiment}
-
-\begin{figure}[H]
-  \centering
-\begin{tabular}{l}
-\hline
-racial profiling come shoot youth usa dont lessons survival black \\ \hline
-right prayers language king unheard luther riot jr martin qt \\ \hline
-praying officer police taco bell people swat news team pray \\ \hline
-riots quiktrip today august watts ago began years burning tonight \\ \hline
-quicktrip ground happening burning police looting gas tear wow scanner \\ \hline
-photo burning quicktrip dogs community becomes police blame attention people \\ \hline
-purge looting death mo people see guard via right police \\ \hline
-police whats going nothing dellwood crazy difference changed pictures color \\ \hline
-brown chaos looted police mike killed want looting shop oh \\ \hline
-fired shots walmart live video fire police florissant looting quicktrip \\ \hline
-\end{tabular}
-\caption{Topics obtained by LDA on the 11/08}
-\end{figure}
-
-
-\begin{figure}[H]
-  \centering
-\begin{tabular}{l}
-\hline
-police gas tear officers stand riot masks protected mist live \\ \hline
-n via historic tonight video protest like police st louis \\ \hline
-nothing today get police home phones resident go happened thrown \\ \hline
-police war missouri us shot riots city zone mo aerial \\ \hline
-happening whats got going shit eyes need peace law news \\ \hline
-media scene area pregnant leave told robin police williams thats \\ \hline
-police people want dont black cops white watching street words \\ \hline
-police violence shooting please journalists someone cars shut know anyone \\ \hline
-right wow reporters gas tear photographers including bullets crowd rubber \\ \hline
-jesus brown mike wow twitter pd obama time alex statement \\ \hline
-\end{tabular}
-\caption{Topics obtained by LDA on the 12/08}
-\end{figure}
-
-
-\newpage
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1129,11 +1266,23 @@ jesus brown mike wow twitter pd obama time alex statement \\ \hline
 
 \chapter{Graph analysis and influence network}
 
-\section{Motivation}
+\section{Motivation and outline}
+
+In the past chapters we focused on the content analysis of the tweets. However, we have to keep in mind that we are working with data from a social network. As a consequence, it is important to study the underlying graphs interesting for our objectives.
+
+In this chapter we start with computing several graphs in order to explore the dataset, then, we will focus on how to define influence in a network.
 
 \newpage
-\section{Tweets graph}
-Considering Twitter features, the most straightforward approach is to study the hashtags. The algorithm \ref{algo:hashtagsGraph} builds a graph of the hashtags combinaisons.
+\section{Hashtags graph}
+We start with analyzing the hashtags combinations. We construct a undirected graph such as :
+\begin{itemize}
+\item a \textbf{node} represents a hashtag
+\item an \textbf{edge} between nodes $a$ and $b$ exists if $a$ and $b$ are used together is a tweet. Our edges are weighted such as the higher the weight, the more used hashtag combinaison.
+\end{itemize}
+
+\subsection{Computation}
+
+The algorithm \ref{algo:hashtagsGraph} builds a graph of the hashtags combinaisons.
 
 \begin{algorithm}
 \caption{Create hashtags graph}
@@ -1164,138 +1313,232 @@ The number of hashtags in a tweet is low (en general below 5 and often 0). Thus,
 \end{algorithmic}
 \end{algorithm}
 
-//commentaire communautés
-// only the top 100 weighted edges are shown. 
+One can see the result on figure \ref{graphHt13nc}. On this graph, only the top 100 edges are shown, and the hashtag \texttt{\#ferguson} as been removed, considered as trivial. The more visible the edge, the higher the weight.
+
+
+// redo graph
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{images/graphs/hashtags/11_08.png}
-\caption{Hashtag graph}
+\includegraphics[width=\textwidth]{images/graphs/hashtags/13_08.png}
+\caption{Hashtag graph for the August 13th.}
+\label{graphHt13nc}
 \end{figure}
 
-\textbf{Community detection}
+\subsection{Community detection}
+On the figure \ref{graphHt13nc}, there are evident groups of hashtags that can be considered as \emph{communities}. In this section we try to detect automatically such communities in the graph.
+
+In order to achieve this, we use the algorithm described in \cite{blondel2008fast}, based on graph modularity optimization, and implemented in python by T. Aynaud\footnote{http://perso.crans.org/aynaud/communities/}.
+
+The modularity\cite{newman2006modularity} of a group can be defined as the observed number of edges in that group minus the expected number of edges if they were distributed randomly.
+
+The number of communities to detect is a parameter of the algorithm. In our case, we set this parameter equals to 5.
+
+The obtained graph is shown on figure \ref{graphHt13c}.
+
+\vfill
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/graphs/hashtags/hc_13_08.png}
 \caption{Hashtag graph}
+\label{graphHt13c}
 \end{figure}
 
+One can notice on the figure \ref{graphHt13c} we obtain distinct communities with different contents :
+
+\definecolor{c_purple}{HTML}{862B59}
+\definecolor{c_red}{HTML}{A10000}
+\definecolor{c_green}{HTML}{0A6308}
+\definecolor{c_blue}{HTML}{123677}
+\definecolor{c_orange}{HTML}{FF8100}
+
+\begin{itemize}
+\item \textbf{\textcolor{c_purple}{community \#1}} : political content related to the conservatives christians (\texttt{\#ccot}), the conservatives, the democratic party (\texttt{\#dem}), the republican party (\texttt{\#gop}) etc.
+\item \textbf{\textcolor{c_red}{community \#2}} : general content about black activist (Cornel W. Brooks), a friend of Mike Brown (Dorian Johnson), corruption etc.
+\item \textbf{\textcolor{c_green}{community \#3}} and \textbf{\textcolor{c_blue}{community \#4}}: close communities with similar content related to defense of the blacks, with expressions like ``black lives matter", ``black youth matter", ``hands up don't shoot", ``dont't shoot" etc.
+\item \textbf{\textcolor{c_orange}{community \#5}} : content relative to the Middle East, like Afghanistan, Baghdad and Israel (\texttt{\#bds}).
+\end{itemize}
 
 \newpage
-\section{Contribution graph}
+\subsection{Contribution graph}
 
-We can wonder how users actually contribute to these hashtags communities. Do users frequently tweet with hastags of a same community or tweet in several hashtags communities ? For this purpose, we take the 100 users who tweeted the most in a community and we see if they tweeted in others communities. A big red dot represent a community with a given number, a small dot represent a user. A edge, in blue, links a user and a community. The opacity of the edge represents the proportion of the users tweets. The more the edge is dark blue, the more the user contributed to that community. 
+We can wonder how users actually contribute to these hashtags communities. Do users frequently tweet with hastags of a same community or tweet in several hashtags communities ? For this purpose, we take the 100 users who tweeted the most in a community and we see if they tweeted in others communities. A big red dot represent a community with a given number, a small dot represent a user. A edge, in blue, links a user and a community. The opacity of the edge represents the proportion of the users tweets. The more the edge is dark blue, the more the user contributed to that community. The result is shown on figure \ref{contribGraph}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/graphs/hashtags/contrib_13_08.png}
 \caption{Hashtag graph}
+\label{contribGraph}
 \end{figure}
 
-\newpage
-
-\section{Mention graph}
-
-\newpage
-\section{Influent users}
-\subsection{Defining the influence}
-
-\begin{figure}[H]
-\begin{subfigure}[t]{0.5\textwidth}
-\begin{center}
-	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_11_08.png}
-	\caption{August 11th}
-\end{center}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.5\textwidth}
-\begin{center}
-	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_14_08.png}
-	\caption{August 14th}
-\end{center}
-\end{subfigure}
-
-\begin{subfigure}[t]{0.5\textwidth}
-\begin{center}
-	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_16_08.png}
-	\caption{August 16th}
-\end{center}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.5\textwidth}
-\begin{center}
-	\includegraphics[width=\textwidth]{images/plots/influence/allfreqInluentUsers_17_08.png}
-	\caption{August 17th}
-\end{center}
-\end{subfigure}
-\caption{Most retweeted users of the 17/08 activity}
-\label{activitiesPlots}
-\end{figure}
-
-
-\subsection{Centrality and page rank}
+One can clearly see that most of the users only contributed in only one community. As a consequence, this means that hashtags induce both content and users communities.
 
 \newpage
 
-\subsection{Influence graph}
+\section{Retweets graph}
+The other graph we can easily compute from our dataset is the mentions graph. As studied in section \ref{subSecFreqs}, a large proportion of tweets are retweets. As a consequence, we decide to keep only the retweet mentions in the graph, such as :
+\begin{itemize}
+\item a \textbf{node} represents a user
+\item an \textbf{directed edge} from node $a$ to $b$ exists if $a$ retweets $b$. Our edges are weighted such as the higher the weight is, the more $a$ has retweeted $b$.
+\end{itemize}
+
+\subsection{Computation}
+
+The algorithm \ref{algo:rtGraph} builds a graph of the retweets.
+
+\begin{algorithm}
+\caption{Create retweets graph}
+\label{algo:rtGraph}
+\begin{algorithmic} 
+\STATE \textbf{input} : retweets list, empty graph
+\STATE \textbf{output} : graph
+\FOR{each retweet in list}
+	\STATE // we call $a$ the the retweet author
+	\STATE // and $b$ the author of the original tweet
+	\IF{nodes $a$ does not exist in graph}
+	\STATE add hashtag node $a$
+	\ENDIF
+	\IF{nodes $b$ does not exist in graph}
+	\STATE add hashtag node $b$
+	\ENDIF
+	\IF{edge $a \rightarrow b$ does not exist in graph}
+	\STATE create edge $a \rightarrow b$
+	\ELSE
+	\STATE increase weight of edge $a \rightarrow b$
+	\ENDIF
+\ENDFOR
+\FOR{each node in graph}
+	\STATE keep the most important outgoing edge
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+The result for the August 17th is shown on figure \ref{rtGraph17}.
+
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{images/graphs/influence/gi_t0_1708.png}
-\caption{PageRank}
+\includegraphics[width=\textwidth]{images/graphs/rtmentions/rtmentions_17.png}
+\caption{Retweet graph for the August 17th}
+\label{rtGraph17}
 \end{figure}
+
+On figure \ref{rtGraph17}, we can clearly see the users that have been retweeted a lot : these are the big mass of points (the edges are not visible as they are too many points).
+
+Moreover, the graph does not contain only one group but several, and these groups are connected each other. We obtain a \emph{star} disposition, espacially on the left, as small groups are connected to a big group.
+
+This graph highlights the influence in the network. In big groups there are underlying very influent nodes. We can then say that the two big groups  in the center of the graph represent the most influent users. In the same way, the nodes at the end are not influent in the network.
+
+As a result, the aim is now to measure this influence, that is to say, that kind of position in the graph. We broach this point in the next section.
+
+\newpage
+\section{Influence in graph}	
+\subsection{Defining the influence}
+
+\subsubsection{Degree Centrality}
+The degree centrality is the most simple way to characterize the influence of a node in a network. It is simply depends on the number of edges connected to the node. The more a node has edges, the more it is important in the network.
+
+The degree centrality of node $i$ is given by :
+
+$$ C_d(i) = \frac{d(i)}{n-1} $$
+
+where d(i) is the degree of the node $i$ and $n$ is the number of nodes in the graph.
+
+However, this measure has limits. Indeed, the node degree is local measure and it does not take into consideration the whole network structure.
+
+\subsubsection{Page Rank}
+\label{PRSec}
+The Page Rank\cite{page1999pagerank} was originally designed for web pages but it can be used for any kind of graph.
+
+The main idea of the Page Rank is that an important node is pointed by other important nodes.
+
+The Page Rank PR of a node $i$ is given by :
+
+$$ PR(i) = \alpha \sum_{j \rightarrow i} \frac{PR(j)}{\textsf{out}(j)} + \frac{1-\alpha}{n} $$
+
+where :
+\begin{itemize}
+\item $\textsf{out}(j)$ is the outdegree of $j$
+\item $n$ is the number of nodes in the graph
+\item $\alpha$ is the \emph{damping factor}, a constant parameter
+\end{itemize}
+
+We make an experiment with these two measures in the following part.
+
+\newpage
+
+\subsection{Experiment}
+
+We compute both In-degree centrality and Page Rank on the August 17th graph and we compare the top influent users lists obtained from these two measures. The result is shown on figure \ref{topinfluentTab11}. The corresponding graph is shown on figure \ref{gi17}.
+
+\vspace{1cm}
 
 \begin{figure}[H]
   \centering
 \begin{tabular}{ccc}
 \hline
-Rank & \textbf{In-degree centrality} & \textbf{PageRank}\\ \hline \hline
+Rank & \textbf{In-Degree Centrality} & \textbf{Page Rank}\\ \hline \hline
 1 & ryanjreilly & ryanjreilly \\ \hline
 2 & antoniofrench & \cellcolor{red!20} huffingtonpost \\ \hline
 3 & youranonnews & youranonnews \\ \hline
 4 & fergusonunity & antoniofrench \\ \hline
 5 & youranonglobal & fergusonunity \\ \hline
-6 & jack & youranonglobal \\ \hline
-7 & thedronalisa & jack \\ \hline
-8 & bradhutchings & thedronalisa \\ \hline
-9 & \cellcolor{red!20}busquedajess & \cellcolor{red!20}margaretlhuang \\ \hline
-10 & \cellcolor{red!20}opferguson & bradhutchings \\ \hline
 \hline
 \end{tabular}
-\caption{top influent users for the 11/08 02:00-09:00}
+\caption{Top influent users on the August 17th}
+\label{topinfluentTab11}
 \end{figure}
-	
+
+\vspace{1cm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/graphs/influence/gi_t0_1708.png}
+\caption{Influence graph on the August 17th}
+\label{gi17}
+\end{figure}
+
 \newpage
 
-\subsection{Influence score}
-We define the influence score as the PageRank of the user : 
+We can notice the \texttt{huffingtonpost} node does not appear in the top influent nodes with the degree centraliy measure. Indeed, it has a small degree but an incoming edge from the node \texttt{ryanjreilly}, so \texttt{huffingtonpost} is an influent node and only detected by the Page Rank measure.
 
-$$ \mathcal{I}(u) = (i_{t_1},i_{t_2},\cdots,i_{t_n}) $$
+The polarity is given by the green (= supportive) / yellow (= informative) colorbar. The top 10 influent users (given by Page Rank) are named on the graph. If a name is in dark, the corresponding user has a negative polarity. If a name is in light, the user has a positive (or null) polarity. 
+
+Firstly, one can notice 
+
 
 \chapter{Role of a user}
 
 \section{Definition}
-In chapters 4 and 5, we defined and measured user's polarity and influence during a riot. In this part we define the role of a user and we look for how to clusters them.
+In this chapter we define and represent the role of a user during one or several riots based on the previous work. In the chapters 4 and 5, we introduced the \emph{polarity} and \emph{influence} scores for a user for a given set of tweets. Given the topics for a considered riot obtained in chapter 3, we can define :
+\begin{itemize}
+\item the \emph{polarity vector} of a user for a riot as being the vector of the polarities of this user computed for the different topics belonging to the considered riot ;
+\item the \emph{influence vector} of a user for a riot as being the vector of the influences of this user computed for the different topics belonging to the considered riot ;
+\end{itemize}
+We can now define the role of a user in a riot as follow : 
 
-\begin{enumerate}
-\item how to find similar users during a riot
-\item how to find similar users between several riots of an unrest
-\end{enumerate}
-
-$$ \mathcal{P}(u) = (p_{t_1},p_{t_2},\cdots,p_{t_n}) $$
-$$ \mathcal{I}(u) = (i_{t_1},i_{t_2},\cdots,i_{t_n}) $$
+\begin{defbox}
+\textbf{Definition} - Role of a user for a riot \\[10pt]
+Let $u$ be a user and $r$ a riot with $n$ topics. \\
+Given the polarity vector $ \mathcal{P}(u) = (p_{t_1},p_{t_2},\cdots,p_{t_n}) $\\ \hspace*{20pt} where $(p_{t_i})_{1\leq i\leq n}$ is the polarity of $u$ for the topic $t_i$,\\
+And given the influence vector $ \mathcal{I}(u) = (i_{t_1},i_{t_2},\cdots,i_{t_n}) $\\ \hspace*{20pt} where $(i_{t_i})_{1\leq i\leq n}$ is the polarity of $u$ for the topic $t_i$,\\[10pt]
+We can define the \emph{role} $ \mathcal{R}(u) $ of $u$ as being the concatenation of $\mathcal{P}(u)$ and $\mathcal{I}(u) : $
 $$ \mathcal{R}(u) = (\mathcal{P}(u) | \mathcal{I}(u)) $$
-
-
-\newpage
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{images/diags/chain.png}
-\caption{plop}
-\end{figure}
+\end{defbox}
 
 \newpage
+
+In a similar way, we can easily define the role of a user for $m$ riots by concatenation : 
+
+\begin{defbox}
+\textbf{Definition} - Role of a user for $m$ riots \\[10pt]
+Let $u$ be a user and let $s = \{r_i\}_{1\leq i\leq m}$ a set of $m$ riots with $n$ topics each. \\
+Given the polarity vector $ \mathcal{P}_{r_i}(u) = (p_{t_1},p_{t_2},\cdots,p_{t_n}) $ of $u$ for the riot $r$ and in the same way $ \mathcal{I}_r(u) = (i_{t_1},i_{t_2},\cdots,i_{t_n}) $ its influence vector, we can define the new polarity and influence vectors for $u$ for the set $s$ as follow : 
+$$ \mathcal{\hat{P}}(u) = (\mathcal{P}_{r_1}|\mathcal{P}_{r_2}|\cdots|\mathcal{P}_{r_m}) $$
+$$ \mathcal{\hat{I}}(u) = (\mathcal{I}_{r_1}|\mathcal{I}_{r_2}|\cdots|\mathcal{I}_{r_m}) $$
+and the role of $u$ for $s$ as : 
+$$ \mathcal{\hat{R}}(u) = (\mathcal{\hat{P}}(u) | \mathcal{\hat{I}}(u)) $$
+\end{defbox}
 
 \section{Dimension reduction}
 \label{dimReducSection}
@@ -1303,39 +1546,226 @@ $$ \mathcal{R}(u) = (\mathcal{P}(u) | \mathcal{I}(u)) $$
 \subsection{High-dimensional vectors}
 The vectorial space created is currently 10 dimensional. This can be considered as high-dimensional and as a consequence causing trouble. 
 
-Firstly, because of the \textbf{curse of dimensionality}. In 10 dimensions, the space is big and sparse. For algorithms such as $k$-nearest neighbor, 
-// to do
+Firstly, because of the \textbf{curse of dimensionality}. In high dimensions, the space is big and sparse. As a consequence, it becomes difficult to evaluate if two vectors are similar/close or not.
+
+Secondly, it is interesting to reduce the dimensions for \textbf{visualization} purpose.
 
 \subsection{Principal Component Analysis}
 Principal Component Analysis is a well-known statistical method to reduce dimensions of a dataset. It converts a set of correlated components to a new set of uncorrelated ones called principal components.
 
+Each principal components explain a percentage of variance such as the first components have the highest variances.
+\subsection{$t$-SNE}
+We choose to compare PCA with another dimension reduction algorithm more designed for visualization called $t$-SNE ($t$-distributed Stochastic Neighbor Embedding) \cite{van2008visualizing}.
 
-\subsection{$t$-SNE ?}
-We choose to compare PCA with another dimension reduction algorithm more designed for visualization.
+
 
 \newpage
 
-\section{Role similarity}
-\subsection{Choice of metrics}
-\subsection{Clustering}
+\section{Unified model}
+In this section we describe the unified model of the project. All the step are represented on the figure \ref{unifiedModel}.
+
+\begin{enumerate}
+\item Compute the topics with Latent Dirichlet Allocation. (section \ref{LDASec})
+\item For each topic, generate a Multinomial Naive Bayes model, classify the tweets and compute and polarity score for each user. (section \ref{NBMediaSec})\\
+$\rightarrow$ polarity vector
+\item For each topic, generate a retweet graph and compute the Page Rank for each user. (section \ref{PRSec})\\
+$\rightarrow$ influence vector
+\item Concatenate the polarity and influence vectors
+\item Reduce the vectors to $d$ dimensions with PCA or $t$-SNE, for example $d = 2$ for visualization purpose.\\
+$\rightarrow$ role vector
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{images/diags/chain.png}
+\caption{Unified model for the role vector computation}
+\ref{unifiedModel}
+\end{figure}
+
 
 \newpage
 
 \section{Experiments}
-experiment 1 \newpage
-experiment 2 \newpage
-experiment 3 \newpage
-experiment 4 \newpage
+We conduct two experiments. First, we compute roles for single riots and then in the next part for two riots. 
+\subsection{Roles during a riot}
+On figure \ref{RolePlot14}, one can see the roles plotted after PCA and $t$-SNE reduction. The polarity is indicated with the color scale, and the influence is proportional to the dot sizes. 
+
+On both figures, there is a clear between the informative users (light green dots) and the supportive users (dark green dots). Moreover, we can notice that the most influent users (big dots) are not grouped together but mixed with the others. The same results are obtained on figure \ref{RolePlot17}
+\begin{figure}[H]
+\begin{subfigure}[t]{0.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{images/plots/roles/pca_14_08.png}
+\caption{PCA}
+\label{Role14PCA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{images/plots/roles/tsne_14_08.png}
+\caption{$t$-SNE}
+\label{Role14TSNE}
+\end{subfigure}
+\caption{Visualization for the roles on the August 14}
+\label{RolePlot14}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}[t]{0.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{images/plots/roles/pca_17_08.png}
+\caption{PCA}
+\label{Role17PCA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.5\textwidth}
+\centering
+\includegraphics[width=\textwidth]{images/plots/roles/tsne_17_08.png}
+\caption{$t$-SNE}
+\label{Role17TSNE}
+\end{subfigure}
+\caption{Visualization for the roles on the August 17}
+\label{RolePlot17}
+\end{figure}
+
+We now put aside the concepts of influence and polarity and just analyze the disposition of the users on the plots. On figure \ref{Role14PCA} and \ref{Role14TSNE}, the users \texttt{ryanjreilly}, \texttt{yamiche}, \texttt{kodacohen} and \texttt{fox2now} are close together. By taking a look at their profile description, it turns out they are all journalists or news medias. 
+
+In the same way, even if it is still compacted on the PCA plot, we notice that black personalities (i.e. people that may clearly defend black people in the Ferguson protests) like \texttt{antoniofrench}, \texttt{elonjames} and \texttt{wesleylowery}, as much as \texttt{youranonnews}, the account of the Anonymous hackers who also defended black people, appear in a different group on the plots (especially on the $t$-SNE plot).
+
+
+However, on the figure \ref{RolePlot17}, we notice differences in the disposition between PCA and $t$-SNE. Indeed, on figure \ref{Role17PCA}, the users \texttt{youranonnews} and \texttt{ryanjreilly} are almost on the opposite, whereas they are very close on figure \label{Role17TSNE}.
+
+We also perform the $k$-Nearest-Neighbors, an algorithm that returns the $k$ closest neighbors of a query point, with the Euclidean distance on the role vectors obtained from $t$-SNE. The results are shown on figure \ref{kNNRoleA}. On \ref{kNNRole14}, the query user is an activist hacker group, and we can see that the first and third users returns by the algorithm have described themselves as activists. In the same way, on the August 17, for the query \texttt{jonswaine} (journalist), one can see on figure \ref{kNNRole17} that there are five journalists or news related accounts and four of them are among the closest neighbors.
+
+\vspace*{1cm}
+
+\begin{figure}[H]
+\begin{subfigure}[t]{0.5\textwidth}
+\footnotesize
+  \centering
+\begin{tabular}{ccc}
+\hline
+Rank & \textbf{user} & \textbf{description} \\ \hline \hline
+1 & edreggi & actor/activist \\ \hline
+2 & 2chainzlyrics & / \\ \hline
+3 & kathrynbruscobk & author/activist \\ \hline
+4 & robertloerzel & author/journalist \\ \hline
+5 & nickpistor & author/reporter \\ \hline
+6 & fallongreen15 & / \\ \hline
+7 & roricomics & author \\ \hline
+8 & khatumofestival & / \\ \hline
+9 & kim\_sutherland & / \\ \hline
+10 & michaelcalhoun & journalist \\ \hline
+\hline
+\end{tabular}
+\caption{August 14 with query user ``youranonnews"}
+\label{kNNRole14}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.5\textwidth}
+  \centering
+  \footnotesize
+\begin{tabular}{ccc}
+\hline
+Rank & \textbf{user} & \textbf{description} \\ \hline \hline
+1 & chrishayestv & journalist \\ \hline
+2 & plussone & activist \\ \hline
+3 & laureldavilacpa & radio commentator \\ \hline
+4 & twitchyteam & news software \\ \hline
+5 & michaelcalhoun & journalist \\ \hline
+6 & fallongreen15 & / \\ \hline
+7 & \_nealanae & / \\ \hline
+8 & wesknuckle & / \\ \hline
+9 & 2chainzlyrics & / \\ \hline
+10 & nickpistor & journalist \\ \hline
+\hline
+\end{tabular}
+\caption{August 17 with query user ``jonswaine"}
+\label{kNNRole17}
+\end{subfigure}
+\caption{Users returned with a $k$-NN search on the $t$-SNE values for a specified}
+\label{kNNRoleA}
+\end{figure}
+
+\newpage
+
+\subsection{Role similarity between $m$ riots}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/plots/roles/tsne_inter_14_17_08.png}
+\caption{$t$-SNE plot of the roles on the August 14th and 17th}
+\label{}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+\begin{tabular}{ccc}
+\hline
+Rank & \textbf{user} & \textbf{description} \\ \hline \hline
+1 & soulrevision & activist \\ \hline
+2 & copwatchnews & activists news \\ \hline
+3 & breaking3zero & news website \\ \hline
+4 & allthenewsisnow & news website \\ \hline
+5 & ryanjreilly & journalist \\ \hline
+6 & realtimehack & / \\ \hline
+7 & haiku\_rs & / \\ \hline
+8 & washingtonpost & news website \\ \hline
+9 & monaeltahawy & author/journal columnist \\ \hline
+10 & youranoncentral & hackers account \\ \hline
+\hline
+\end{tabular}
+\caption{Users returned with a $k$-NN search for the query user ``pzfeed"}
+\end{figure}
 
 \chapter{Related work}
-related work 1 \newpage
-related work 2 \newpage
-related work 3 \newpage
+\section{Crisis informatics}
+Crisis events have been a topic of study over the past few years in computer science with the progressive use of social medias in the whole world. This studies lead to a new field called \emph{crisis informatics}.
 
-\chapter{Discussion}
-discussion 1 \newpage
-discussion 2 \newpage
-discussion 3 \newpage
+\cite{vieweg2015expect} analyzes data from 26 crisis events of several types (like floods, earthquakes, wildfires, shootings, bombings etc.) and makes a transversal study of the information types and sources shared on Twitter. The study shows that :
+\begin{enumerate}
+\item even if such events happen regularly, each crisis remains unique, even two disasters of the same type occuring in the same country.
+\item human-induced crises (riots, shootings..) tend to be more similar to each other than to natural disasters.
+\end{enumerate}
+
+\cite{imran2013extracting} descibes a method for processing messages from social medias in order to extract useful information. The proposed system uses machine learning methods like Naive Bayes to classify relevant messages and obtains good accuracy results.
+
+\cite{mendoza2010twitter} studies Twitter messages after the 2010 Chile earthquake. Among other things, this paper analyzes the propagation of false and true rumors and shows that false rumors can be detected. Indeed, these messages tend to be more called into question, and as a consequence machine learning can target them.
+
+Finally, \cite{imran2014processing} is a state of the art about processing social medias messages during crisis events. It describes all the steps, which are in the order : data acquisition, preprocessing, event detection, event tracking, clustering / classification, information extraction, summarization, semantic enrichment and ontologies. For each section, the paper describes the existing techniques, their results, and the main relevant papers.
+\newpage
+\section{Riots}
+There are already some papers existing about social medias and riots.
+
+\subsection{London riots}
+
+The 2011 London riots lead to several study over the past few years. 
+\cite{procter2013reading} analyzed by what kind of actor (media, celebrity, activist etc.) was used Twitter during that period. The paper also focuses on rumors, how they spread during the riots and how they can be called into question.
+\cite{tonkin2012twitter} try 
+
+\newpage
+
+\chapter{Conclusion}
+\section{Summary}
+In this project we have introduced a framework for analyzing roles of users during a riot. The dataset contains messages from Twitter during the 2014 US Ferguson protests.\\[2pt]
+
+In chapter 3, we first perform some preprocessing on the data. Then, we extract topics from a riot by comparing two techniques : $k$-means and Latent Dirichlet Allocation. After experimenting, we choose to select the second method.\\[2pt]
+
+In chapter 4, we focus on the content of the tweets. After having established a classification of types, we train and test a Naive Bayes classifier to predict if a tweet is either supportive or informative about the riot. We also study the medias shared by users in order to improve our classifier and in the end we define and compute user polarity score.\\[2pt]
+
+In chapter 5, we perform graph analysis on the hashtags and users and we visualize these networks through examples. We also define and compute user influence score with degree centrality and Page Rank. We choose to keep for the next chapter the Page Rank method, as it is more realistic. \\[2pt]
+
+Finally, we define the role of a user during a riot (or several) as being the feature vector of its polarity and influence scores for each topic. We perform dimension reduction with PCA and $t$-SNE for visualization purpose and neighbors research. Through experiments, we show how users with the same job (for example journalists or activists) are grouped together.
+
+\newpage
+\section{Future work}
+In this section we identify some future work tracks to improve our framework.
+
+Firstly, it is possible to perform more in-depth Natural Language Processing analysis in the begining. Indeed, it would be interesting to add a lemming or stemming step in section 3.2. These processing would allow to consider for example words as \emph{riot} and \emph{riot\underline{s}} to be represented as the same, as much as for the words \emph{loot\underline{ing}} and \emph{loot\underline{ed}}. In addition to reducing the vocabulary size, it may improve the model accuracy in section 4.2.2. We can also think about create a lexicon specific to riots in order to detect and classify better informative and supportive tweets.
+
+Secondly, our model remains quite simple, as it only consider two features : the \emph{influence} and the \emph{polarity}. It may also be a good track to define new features to characterize the role of a user. For example, it would be possible to use the hashtags communities found in 5.2.2.
+
+Finally, it would be necessary to perform more exhaustive tests on our framework by playing with the different parameter. For example, it would be interesting to try with a different number of topics or a different vocabulary size. Moreover, tests on more riots days should be performed to identify strengths and weaknesses of our model.
 
 \bibliographystyle{apalike}
 \bibliography{biblio}
